@@ -19,6 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:pro": "env-cmd -f .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prettier:write": "prettier --write '{**/*,*}.{js,ts,jsx,tsx}'",
@@ -46,6 +47,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-airbnb-typescript": "^16.1.0",

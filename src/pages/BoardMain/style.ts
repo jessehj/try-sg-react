@@ -10,6 +10,7 @@ export const BoardMainContainer = styled.div`
   min-height: 100vh;
 
   background-color: #fafafa;
+  padding-top: 60px;
 `;
 export const PostingCard = styled.div`
   margin: 12px 0px;

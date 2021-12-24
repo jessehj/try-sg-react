@@ -1,6 +1,6 @@
 import { colorType, fontType } from "../types/themeType";
 
-export const Colors: colorType = {
+const Colors: colorType = {
   PRIMARY_COLOR: "#397EF6",
   HOVER_COLOR: "#2E65C5",
   DISABLED_COLOR: "#B0CBFB",
@@ -13,7 +13,7 @@ export const Colors: colorType = {
   BLACK: "#000000",
   DANGER: "#FF6262",
 };
-export const Fonts: fontType = {
+const Fonts: fontType = {
   FONT_ONE: {
     name: "Noto Sans CJK KR",
     HEADING_ONE: {
@@ -113,14 +113,17 @@ export const Fonts: fontType = {
 };
 
 const device = {
-  PHONE: "576px",
-  DESKTOP: "1200px",
+  PHONE: "360px",
+  DESKTOP: "1300px",
 };
-const deviceSize = {
-  PHONE: `screen and (max-width: ${device.PHONE})`,
-  DESKTOP: `screen and (max-width: ${device.DESKTOP})`,
+const DeviceSize = {
+  PHONE: `screen and (min-width: ${device.PHONE})`,
+  DESKTOP: `screen and (min-width: ${device.DESKTOP})`,
 };
 
-export const changeDevice = {
-  deviceSize,
+// eslint-disable-next-line import/prefer-default-export
+export const Theme = {
+  DeviceSize,
+  Fonts,
+  Colors,
 };

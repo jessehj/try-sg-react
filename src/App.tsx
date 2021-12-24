@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import MobileHeader from "./components/MobileHeader/MobileHeader";
+// import SignUp from "./pages/SignUp";
+import LogIn from "./pages/LogIn";
 
 const App = function App() {
   return (
     <div>
-      <MobileHeader />
+      <LogIn />
     </div>
   );
 };

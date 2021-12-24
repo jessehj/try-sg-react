@@ -5,10 +5,12 @@ import SignInput from "../../components/SignInput";
 
 const SignUp = function () {
   return (
-    <style.SignUpSize>
-      <ShowSalySignUp />
-      <SignInput />
-    </style.SignUpSize>
+    <style.SignWrap>
+      <style.SignUpSize>
+        <ShowSalySignUp />
+        <SignInput />
+      </style.SignUpSize>
+    </style.SignWrap>
   );
 };
 

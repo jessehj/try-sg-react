@@ -25,7 +25,6 @@ export const LoginSize = styled.div`
     width: 100%;
     max-width: 1920px;
     height: 100vh;
-    background-color: ${Theme.Colors.WHITE};
   }
 `;
 

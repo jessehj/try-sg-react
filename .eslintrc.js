@@ -29,6 +29,7 @@ module.exports = {
       { functions: true, classes: true, variables: false },
     ],
     "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
   },
   settings: {
     react: {

@@ -1,32 +1,37 @@
 import styled from "styled-components";
+import { Theme } from "../../constants/theme";
 
 export const PostCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-
-  width: 328px;
-  height: auto;
-
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
   border-radius: 8px;
 
   overflow: hidden;
+
+  @media ${Theme.DeviceSize.PHONE} {
+    width: 328px;
+    height: auto;
+  }
+  @media ${Theme.DeviceSize.DESKTOP} {
+    width: 282px;
+    height: 380px;
+  }
 `;
 export const ImageContainer = styled.image`
   width: 100%;
-  height: 160px;
+  min-height: 160px;
 
   background-color: #282c34;
 `;
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
 
   width: inherit;
   min-height: 75px;
-  max-height: 114px;
+  height: 100%;
 
   margin: 6px 0px;
 `;
@@ -47,6 +52,10 @@ export const Title = styled.div`
 
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media ${Theme.DeviceSize.DESKTOP} {
+    width: 234px;
+  }
 `;
 export const SubTitle = styled(Title)`
   min-height: 18px;
@@ -63,7 +72,7 @@ export const Footer = styled.div`
   align-items: center;
 
   width: inherit;
-  height: 50px;
+  min-height: 50px;
 
   border-top: 1px solid #ebecf3;
 `;

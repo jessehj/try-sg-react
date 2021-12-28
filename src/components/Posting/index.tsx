@@ -4,7 +4,11 @@ import { ReactComponent as UserImg } from "../../assets/userImg.svg";
 import { ReactComponent as DeleteIcon } from "../../assets/delete_Icon.svg";
 import { ReactComponent as EditIcon } from "../../assets/edit_Icon.svg";
 
-const Posting = function Posting() {
+interface Props {
+  handleDeleteModal: (status: boolean) => void;
+}
+
+const Posting: React.FC<Props> = function Posting({ handleDeleteModal }) {
   return (
     <S.PostCardContainer>
       <S.ImageContainer />
@@ -24,7 +28,13 @@ const Posting = function Posting() {
         </S.Profile>
         <S.EditMenu>
           <EditIcon style={{ cursor: "pointer" }} />
-          <DeleteIcon style={{ cursor: "pointer" }} />
+          <DeleteIcon
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              handleDeleteModal(true);
+              console.log("clicked");
+            }}
+          />
         </S.EditMenu>
       </S.Footer>
     </S.PostCardContainer>

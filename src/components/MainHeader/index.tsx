@@ -1,13 +1,30 @@
-import React from "react";
-import { ReactComponent as Slonch } from "../../assets/slonch.svg";
-import { ReactComponent as MenuIcon } from "../../assets/menu_Icon.svg";
+import React, { useState } from "react";
 import * as S from "./style";
+import MyProfileModal from "../Modals/MyProfileModal";
 
 const MainHeader = function MainHeader() {
+  const [modal, handleModal] = useState<boolean>(false);
+
   return (
     <S.HeaderContainer>
-      <Slonch style={{ margin: "16px" }} />
-      <MenuIcon style={{ margin: "16px", cursor: "pointer" }} />
+      <S.LeftContainer>
+        <S.SlonchIcon />
+        <S.NavigationBarContainer>
+          <S.NavigationList>홈 피드</S.NavigationList>
+          <S.NavigationList>카테고리</S.NavigationList>
+          <S.NavigationList>디렉토리</S.NavigationList>
+        </S.NavigationBarContainer>
+      </S.LeftContainer>
+      <S.RightContainer>
+        <S.UserImgIcon onClick={() => handleModal(true)}>
+          {modal && (
+            <S.ModalContainer>
+              <MyProfileModal handleModal={handleModal} />
+            </S.ModalContainer>
+          )}
+        </S.UserImgIcon>
+        <S.MenuIcon />
+      </S.RightContainer>
     </S.HeaderContainer>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import ShowInput from "../../components/ShowInput";
+import LoginInput from "../../components/LoginInput";
 import ShowSaly from "../../components/ShowSaly";
 import style from "./style";
 
@@ -8,7 +8,7 @@ const LogIn = function () {
     <style.LoginWrap>
       <style.LoginSize>
         <ShowSaly />
-        <ShowInput />
+        <LoginInput />
       </style.LoginSize>
     </style.LoginWrap>
   );

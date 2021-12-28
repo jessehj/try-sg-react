@@ -1,14 +1,14 @@
 import React from "react";
 import style from "./style";
-import ShowSalySignUp from "../../components/ShowSalySignUp";
-import SignInput from "../../components/SignInput";
+import ShowSalyToggle from "../../components/ShowSalyToggle";
+import SignUpInput from "../../components/SignUpInput";
 
 const SignUp = function () {
   return (
     <style.SignWrap>
       <style.SignUpSize>
-        <ShowSalySignUp />
-        <SignInput />
+        <ShowSalyToggle />
+        <SignUpInput />
       </style.SignUpSize>
     </style.SignWrap>
   );

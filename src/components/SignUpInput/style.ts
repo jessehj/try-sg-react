@@ -19,7 +19,7 @@ export const SignInWrap = styled.div`
 `;
 export const SignInContainer = styled.div`
   width: 320px;
-  height: 622px;
+  height: 658px;
   padding: 24px 20px 0px 20px;
 `;
 export const IdBox = styled.div`
@@ -91,8 +91,17 @@ export const NoticeText = styled.div`
 `;
 export const JoinButton = styled(buttonStyle)`
   width: 320px;
-  height: 56px;
+  height: 64px;
   margin-top: 24px;
+`;
+export const AlreadyWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  font-size: ${Theme.Fonts.FONT_ONE.BODY_TWO.fontSize};
+  font-weight: ${Theme.Fonts.FONT_ONE.BODY_TWO.fontWeight};
+  line-height: ${Theme.Fonts.FONT_ONE.BODY_TWO.lineHeight};
 `;
 export default {
   IdBox,
@@ -106,4 +115,5 @@ export default {
   SignInContainer,
   SignInWrap,
   JoinButton,
+  AlreadyWrap,
 };

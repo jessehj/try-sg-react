@@ -1,13 +1,16 @@
 import React from "react";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
-// import LogIn from "./pages/LogIn";
 
 const App = function App() {
   return (
-    <div>
-      <SignUp />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

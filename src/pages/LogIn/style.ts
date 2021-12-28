@@ -16,15 +16,16 @@ export const LoginSize = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 360px;
-    height: 622px;
+    width: 320px;
+    height: 640px;
     padding: 0px 20px 18px 20px;
   }
   @media ${Theme.DeviceSize.DESKTOP} {
     flex-direction: row;
     width: 100%;
     max-width: 1920px;
-    height: 100vh;
+    height: 100%;
+    padding: 0px 20px 0px 20px;
   }
 `;
 

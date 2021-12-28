@@ -19,7 +19,6 @@ export const SignInWrap = styled.div`
 `;
 export const SignInContainer = styled.div`
   width: 320px;
-  height: 658px;
   padding: 24px 20px 0px 20px;
 `;
 export const IdBox = styled.div`
@@ -58,14 +57,18 @@ export const InputStyle = styled.input`
     border: 2px solid ${Theme.Colors.HOVER_COLOR};
   }
 `;
-export const InputId = styled(InputStyle)`
+export const InputId = styled(InputStyle)<{ toggle: boolean }>`
   width: 213px;
   height: 56px;
   margin-top: 0px;
+  border: 2px solid
+    ${(props) => (props.toggle ? Theme.Colors.GRAY_TWO : Theme.Colors.DANGER)};
 `;
-export const InputNomal = styled(InputStyle)`
+export const InputNomal = styled(InputStyle)<{ toggle: boolean }>`
   width: 320px;
   height: 56px;
+  border: 2px solid
+    ${(props) => (props.toggle ? Theme.Colors.GRAY_TWO : Theme.Colors.DANGER)};
 `;
 export const InputPhone = styled(InputStyle)`
   width: 180px;
@@ -83,11 +86,13 @@ export const GetToken = styled(buttonStyle)`
   width: 132px;
   height: 56px;
 `;
-export const NoticeText = styled.div`
+export const NoticeText = styled.div<{ toggle: boolean }>`
   margin: 8px 0px 2px 8px;
   font-size: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.fontSize};
   font-weight: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.fontWeight};
   line-height: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.lineHeight};
+  color: ${(props) =>
+    props.toggle ? Theme.Colors.BLACK : Theme.Colors.DANGER};
 `;
 export const JoinButton = styled(buttonStyle)`
   width: 320px;

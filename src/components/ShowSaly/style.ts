@@ -8,7 +8,6 @@ export const SalyWrap = styled.div`
     align-items: center;
     width: 320px;
     height: 296px;
-    min-height: 296px;
   }
   @media ${Theme.DeviceSize.DESKTOP} {
     display: flex;

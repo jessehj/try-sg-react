@@ -59,7 +59,7 @@ export const WelcomeTextBox = styled.div`
     margin-top: 0px;
   }
 `;
-export const WelcomeTitle = styled.div`
+export const WelcomeTitle = styled.h1`
   width: 100%;
   font-size: ${Theme.Fonts.FONT_ONE.HEADING_ONE.fontSize};
   font-weight: ${Theme.Fonts.FONT_ONE.HEADING_ONE.fontWeight};

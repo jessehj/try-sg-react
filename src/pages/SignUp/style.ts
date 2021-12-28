@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Theme } from "../../constants/theme";
 
-export const SignWrap = styled.div`
+export const SignUpWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,7 @@ export const SignUpSize = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 360px;
+    width: 320px;
     height: 640px;
     padding: 0px 20px 18px 20px;
   }
@@ -28,5 +28,5 @@ export const SignUpSize = styled.div`
 `;
 export default {
   SignUpSize,
-  SignWrap,
+  SignUpWrap,
 };

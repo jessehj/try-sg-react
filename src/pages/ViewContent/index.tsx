@@ -3,7 +3,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import style from "./style";
 import "./quillStyle.css";
-import Undermenu from "../../components/FixWrite/index";
+import UnderMenu from "../../components/FixWrite/index";
+import TopMenu from "../../components/FixMenu";
 
 const ViewContent = function () {
   const [writeText, setWriteText] = useState<string>("");
@@ -44,6 +45,7 @@ const ViewContent = function () {
 
   return (
     <style.ViewContainer>
+      <TopMenu />
       <style.InputTitleContainer>
         <style.TitleInput
           type="text"
@@ -66,7 +68,7 @@ const ViewContent = function () {
           />
         </style.QuillBox>
       </style.QuillBoxWrap>
-      <Undermenu title={writeTitle} text={writeText} />
+      <UnderMenu title={writeTitle} text={writeText} />
     </style.ViewContainer>
   );
 };

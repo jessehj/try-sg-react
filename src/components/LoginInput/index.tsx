@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import style from "./style";
-import { Theme } from "../../constants/theme";
+import Theme from "../../constants/theme";
 import { ReactComponent as HumanCheck } from "../../assets/images/human_check.svg";
 import { ReactComponent as Human } from "../../assets/images/human.svg";
 import { ReactComponent as LockCheck } from "../../assets/images/lock_check.svg";

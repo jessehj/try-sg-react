@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Theme } from "../../constants/theme";
+import Theme from "../../constants/theme";
 
 const UpdateWrap = styled.div`
   display: flex;

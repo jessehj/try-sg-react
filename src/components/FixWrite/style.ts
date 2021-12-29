@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Theme } from "../../constants/theme";
+import Theme from "../../constants/theme";
 
 const UnderWrap = styled.div`
   width: 100%;
@@ -39,11 +39,17 @@ const TempSave = styled.button`
     width: 69px;
     height: 100%;
     border-radius: 50px;
+    font-size: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.fontSize};
+    font-weight: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.fontWeight};
+    line-height: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.lineHeight};
   }
   @media ${Theme.DeviceSize.DESKTOP} {
     width: 100px;
     height: 100%;
     border-radius: 100px;
+    font-size: ${Theme.Fonts.FONT_ONE.BUTTON_ONE.fontSize};
+    font-weight: ${Theme.Fonts.FONT_ONE.BUTTON_ONE.fontWeight};
+    line-height: ${Theme.Fonts.FONT_ONE.BUTTON_ONE.lineHeight};
   }
 `;
 const SaveContent = styled.button`
@@ -56,10 +62,16 @@ const SaveContent = styled.button`
   @media ${Theme.DeviceSize.PHONE} {
     width: 47px;
     border-radius: 50px;
+    font-size: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.fontSize};
+    font-weight: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.fontWeight};
+    line-height: ${Theme.Fonts.FONT_ONE.BUTTON_THREE.lineHeight};
   }
   @media ${Theme.DeviceSize.DESKTOP} {
     width: 70px;
     border-radius: 100px;
+    font-size: ${Theme.Fonts.FONT_ONE.BUTTON_ONE.fontSize};
+    font-weight: ${Theme.Fonts.FONT_ONE.BUTTON_ONE.fontWeight};
+    line-height: ${Theme.Fonts.FONT_ONE.BUTTON_ONE.lineHeight};
   }
 `;
 export default {

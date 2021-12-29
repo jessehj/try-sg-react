@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface colorType {
+export interface ColorType {
   PRIMARY_COLOR: string;
   HOVER_COLOR: string;
   DISABLED_COLOR: string;
@@ -12,41 +11,45 @@ export interface colorType {
   BLACK: string;
   DANGER: string;
 }
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface fontInner {
+interface FontInner {
   fontWeight: string;
   fontSize: string;
   lineHeight: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface fontSans {
+interface FontSans {
   name: string;
-  HEADING_ONE: fontInner;
-  HEADING_TWO: fontInner;
-  HEADING_THREE: fontInner;
-  HEADING_FOUR: fontInner;
-  HEADING_FIVE: fontInner;
-  HEADING_SIX: fontInner;
-  BODY_ONE: fontInner;
-  BODY_TWO: fontInner;
-  BODY_THREE: fontInner;
-  PARAGRAPH_ONE: fontInner;
-  BUTTON_ONE: fontInner;
-  BUTTON_TWO: fontInner;
-  BUTTON_THREE: fontInner;
+  HEADING_ONE: FontInner;
+  HEADING_TWO: FontInner;
+  HEADING_THREE: FontInner;
+  HEADING_FOUR: FontInner;
+  HEADING_FIVE: FontInner;
+  HEADING_SIX: FontInner;
+  BODY_ONE: FontInner;
+  BODY_TWO: FontInner;
+  BODY_THREE: FontInner;
+  PARAGRAPH_ONE: FontInner;
+  BUTTON_ONE: FontInner;
+  BUTTON_TWO: FontInner;
+  BUTTON_THREE: FontInner;
 }
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface fontSerif {
+interface FontSerif {
   name: string;
-  HEADING_ONE: fontInner;
-  HEADING_TWO: fontInner;
-  BODY_ONE: fontInner;
-  BODY_TWO: fontInner;
-  PARAGRAPH_ONE: fontInner;
+  HEADING_ONE: FontInner;
+  HEADING_TWO: FontInner;
+  BODY_ONE: FontInner;
+  BODY_TWO: FontInner;
+  PARAGRAPH_ONE: FontInner;
 }
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface fontType {
-  FONT_ONE: fontSans;
-  FONT_TWO: fontSerif;
+export interface FontType {
+  FONT_ONE: FontSans;
+  FONT_TWO: FontSerif;
+}
+export interface DeviceSize {
+  PHONE: number;
+  DESKTOP: number;
+}
+export interface DeviceStyle {
+  PHONE: string;
+  DESKTOP: string;
 }

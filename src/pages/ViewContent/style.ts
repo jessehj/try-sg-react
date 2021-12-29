@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Theme } from "../../constants/theme";
+import Theme from "../../constants/theme";
 
 const ViewContainer = styled.div`
   width: 100vw;

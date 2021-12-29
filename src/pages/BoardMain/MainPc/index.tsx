@@ -8,6 +8,7 @@ import DeleteModal from "../../../components/Modals/DeleteModal";
 
 const MainPc = function () {
   const [modal, handleModal] = useState<boolean>(false);
+  const [toggle, handleToggle] = useState<boolean>(false);
   const [items, setItems] = useState<number[]>([
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
   ]);
@@ -15,6 +16,10 @@ const MainPc = function () {
 
   const handleDeleteModal = (status: boolean) => {
     handleModal(status);
+    document.body.style.overflow = "unset";
+  };
+  const handleMenuModal = (status: boolean) => {
+    handleToggle(status);
     document.body.style.overflow = "unset";
   };
 
@@ -33,7 +38,7 @@ const MainPc = function () {
 
   return (
     <S.Container>
-      <MainHeader />
+      <MainHeader handleMenuToggle={handleMenuModal} toggle={toggle} />
       <S.BoardMainContainer>
         <S.SearchBarContainer>
           <SearchBar />

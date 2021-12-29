@@ -26,7 +26,7 @@ export const BoardMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   background-color: ${Theme.Colors.GRAY_ONE};
 
   @media ${Theme.DeviceSize.PHONE} {

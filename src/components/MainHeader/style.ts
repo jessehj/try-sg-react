@@ -4,21 +4,28 @@ import slonchPc from "../../assets/slonch_pc.svg";
 import slonchMobile from "../../assets/slonch.svg";
 import menuIcon from "../../assets/menu_Icon.svg";
 import userImg from "../../assets/midUserImg.svg";
+import closeIcon from "../../assets/close_Icon.svg";
 
 export const HeaderContainer = styled.div`
   display: flex;
   position: fixed;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 60px;
-
+  width: 100vw;
   min-width: 360px;
+  background-color: ${Theme.Colors.WHITE};
+  z-index: 1000;
 
-  background-color: white;
+  @media ${Theme.DeviceSize.PHONE} {
+    height: 60px;
+
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
+  }
 
   @media ${Theme.DeviceSize.DESKTOP} {
     height: 80px;
+
+    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.06);
   }
 `;
 export const LeftContainer = styled.div`
@@ -93,12 +100,14 @@ export const UserImgIcon = styled.div`
     }
   }
 `;
-export const MenuIcon = styled.div`
+export const MenuIcon = styled.div<{ toggle: boolean }>`
   @media ${Theme.DeviceSize.PHONE} {
     display: flex;
     width: 24px;
     height: 24px;
-    background-image: url(${menuIcon});
+    transition-duration: 0.5s;
+    background-image: ${(props) =>
+      props.toggle ? `url(${closeIcon})` : `url(${menuIcon})`};
 
     &:hover {
       cursor: pointer;

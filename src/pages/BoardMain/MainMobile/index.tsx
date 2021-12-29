@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
+import { Transition } from "react-transition-group";
 import * as S from "../style";
 import MainHeader from "../../../components/MainHeader";
 import SearchBar from "../../../components/SearchBar";
 import Posting from "../../../components/Posting";
 import DeleteModal from "../../../components/Modals/DeleteModal";
+import MenuModal from "../../../components/Modals/MenuModal";
 
 const MainMobile = function () {
   const [modal, handleModal] = useState<boolean>(false);
+  const [toggle, handleToggle] = useState<boolean>(false);
   const [items, setItems] = useState<number[]>([1]);
   const [page, setPage] = useState(0);
   const [ref, inView] = useInView();
@@ -17,6 +20,10 @@ const MainMobile = function () {
 
   const handleDeleteModal = (status: boolean) => {
     handleModal(status);
+    document.body.style.overflow = "unset";
+  };
+  const handleMenuModal = (status: boolean) => {
+    handleToggle(status);
     document.body.style.overflow = "unset";
   };
 
@@ -35,7 +42,7 @@ const MainMobile = function () {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader handleMenuToggle={handleMenuModal} toggle={toggle} />
       <S.BoardMainContainer>
         <S.SearchBarContainer>
           <SearchBar />
@@ -58,6 +65,9 @@ const MainMobile = function () {
             })}
           </S.PostingContents>
         </S.PostingContainer>
+        <Transition unmountOnExit in={toggle} timeout={500}>
+          <MenuModal toggle={toggle} />
+        </Transition>
       </S.BoardMainContainer>
       {modal && (
         <DeleteModal handleDeleteModal={handleDeleteModal} modal={modal} />

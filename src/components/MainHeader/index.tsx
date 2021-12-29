@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import * as S from "./style";
 import MyProfileModal from "../Modals/MyProfileModal";
 
-const MainHeader = function MainHeader() {
+interface Props {
+  toggle: boolean;
+  handleMenuToggle: (status: boolean) => void;
+}
+
+const MainHeader: React.FC<Props> = function MainHeader({
+  toggle,
+  handleMenuToggle,
+}) {
   const [modal, handleModal] = useState<boolean>(false);
 
   return (
@@ -23,7 +31,7 @@ const MainHeader = function MainHeader() {
             </S.ModalContainer>
           )}
         </S.UserImgIcon>
-        <S.MenuIcon />
+        <S.MenuIcon toggle={toggle} onClick={() => handleMenuToggle(!toggle)} />
       </S.RightContainer>
     </S.HeaderContainer>
   );

@@ -72,10 +72,6 @@ export const WriteBtn = styled.button`
   background-color: ${Theme.Colors.WHITE};
   color: ${Theme.Colors.PRIMARY_COLOR};
   font-size: 12px;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 export const MenuContainer = styled(UserContainer)`
   height: 50%;
@@ -105,10 +101,6 @@ export const FooterBtn = styled.button`
   border: 1px solid ${Theme.Colors.GRAY_FOUR};
   border-radius: 100px;
   color: ${Theme.Colors.GRAY_FOUR};
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 export default {

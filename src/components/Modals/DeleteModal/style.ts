@@ -9,7 +9,7 @@ export const AbsoluteContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  z-index: 100;
+  z-index: 1000;
 `;
 export const AlertContainer = styled.div`
   display: flex;
@@ -85,9 +85,6 @@ export const ButtonContainer = styled.div`
 export const CancelBtn = styled.button`
   background-color: ${Theme.Colors.WHITE};
   color: ${Theme.Colors.GRAY_FOUR};
-  &:hover {
-    cursor: pointer;
-  }
 
   @media ${Theme.DeviceSize.PHONE} {
     width: 132px;

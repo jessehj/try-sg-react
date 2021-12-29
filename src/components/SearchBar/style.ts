@@ -13,7 +13,7 @@ export const SearchBarContainer = styled.div`
 `;
 
 export const InputBox = styled.input`
-  width: auto;
+  width: 90%;
   height: 24px;
   min-width: 160px;
   max-width: 770px;
@@ -25,6 +25,7 @@ export const InputBox = styled.input`
   color: #888888;
   background-color: inherit;
   outline: none;
+  font-family: inherit;
 `;
 
 export default {

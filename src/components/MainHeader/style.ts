@@ -14,7 +14,7 @@ export const HeaderContainer = styled.div`
   width: 100vw;
   min-width: 360px;
   background-color: ${Theme.Colors.WHITE};
-  z-index: 1000;
+  z-index: 500;
 
   @media ${Theme.DeviceSize.PHONE} {
     height: 60px;

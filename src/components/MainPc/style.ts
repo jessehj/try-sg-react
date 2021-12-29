@@ -11,9 +11,7 @@ const MainWrap = styled.div`
 const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 1200px;
-  height: 1188px;
+  width: 1224px;
   background-color: lightcoral;
 `;
 export default {

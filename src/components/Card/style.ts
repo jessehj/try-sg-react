@@ -10,9 +10,10 @@ const CardContainer = styled.div`
     height: 374px;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
   }
-  @media ${Theme.DeviceSize.PHONE} {
+  @media ${Theme.DeviceSize.DESKTOP} {
     width: 282px;
     height: 380px;
+    margin: 12px;
     box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.06);
   }
 `;

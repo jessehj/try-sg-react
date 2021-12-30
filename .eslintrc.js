@@ -29,6 +29,7 @@ module.exports = {
       { functions: true, classes: true, variables: false },
     ],
     "react/require-default-props": "off",
+    "import/prefer-default-export": "off",
   },
   settings: {
     react: {

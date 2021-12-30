@@ -4,7 +4,7 @@ import BoardCardProps from "./interface";
 const StyledBoardCard = styled.div<BoardCardProps>`
   max-width: ${({ width }) => {
     if (width) return width;
-    return "282px";
+    return "90%";
   }};
   height: 380px;
   display: flex;

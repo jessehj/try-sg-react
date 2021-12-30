@@ -9,9 +9,17 @@ export default {
 
 export const defaultBoardFooter = () => {
   return (
-    <BoardFooter isLogin={false} userProfileImg={exampleImg} userName="민기" />
+    <BoardFooter isOwner={false} userProfileImg={exampleImg} userName="민기" />
   );
 };
 defaultBoardFooter.story = {
   name: "BoardFooter",
+};
+export const loginBoardFooter = () => {
+  return (
+    <BoardFooter isOwner userProfileImg={exampleImg} userName="로그인민기" />
+  );
+};
+loginBoardFooter.story = {
+  name: "LoginBoardFooter",
 };

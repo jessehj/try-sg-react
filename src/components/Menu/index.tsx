@@ -1,6 +1,6 @@
 import React from "react";
 import MenuLayout from "./style";
-import MenuLinks from "./menuLinks";
+import MenuLinks from "./MenuLinks";
 
 const Menu: React.FC = function Menu() {
   return (

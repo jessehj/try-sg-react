@@ -1,5 +1,5 @@
 export default interface BoardFooterProps {
-  isLogin: boolean;
+  isOwner: boolean;
   userProfileImg: string;
   userName: string;
 }

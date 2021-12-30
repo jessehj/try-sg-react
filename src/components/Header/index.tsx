@@ -3,7 +3,7 @@ import Menu from "../Menu";
 import LoginInfo from "../LoginInfo";
 import HeaderLayout from "./styles";
 
-const Header: React.FC = function () {
+const Header: React.FC = function Header() {
   return (
     <HeaderLayout>
       <Menu />

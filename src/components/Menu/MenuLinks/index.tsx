@@ -2,7 +2,7 @@ import React from "react";
 import MenuLink from "./style";
 import Logo from "../../Logo";
 
-const MenuLinks: React.FC = function () {
+const MenuLinks: React.FC = function MenuLinks() {
   return (
     <>
       <Logo />

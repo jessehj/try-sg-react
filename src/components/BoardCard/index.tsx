@@ -15,16 +15,17 @@ const BoardCard: React.FC<BoardCardProps> = function BoardCard({
   title,
   explain,
   src,
+  isOwner,
 }) {
   return (
-    <StyledBoardCard src={src} width={width} height={height}>
+    <StyledBoardCard isOwner={isOwner} src={src} width={width} height={height}>
       <ThumbnailImage src={src} />
       <BoardTitle>{title}</BoardTitle>
       <BoardExplain>{explain}</BoardExplain>
       <Hr />
 
       <BoardFooter
-        isLogin={false}
+        isOwner={isOwner}
         userProfileImg={exampleImage}
         userName="민기"
       />

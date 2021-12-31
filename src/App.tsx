@@ -7,6 +7,8 @@ import SignUpPage from "./pages/SignupPage/SignUpPage";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 
 import GlobalStyle from "./styles/global";
+import MyPage from "./pages/MyPage/MyPage";
+import MainPage from "./pages/MainPage/MainPage";
 
 const App = function App() {
   return (
@@ -18,6 +20,8 @@ const App = function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/my-page" element={<MyPage />} />
+          <Route path="/" element={<MainPage />} />
         </Routes>
       </BrowserRouter>
     </>

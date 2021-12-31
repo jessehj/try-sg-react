@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { CustomInput } from "../../styles/CustomInput";
 import { CustomButton } from "../../styles/CustomButton";
@@ -14,6 +15,7 @@ import { BLUE02, GRAY03, GRAY04 } from "../../styles/Variables";
 import { mediaQueries, MOBILE } from "../../styles/MediaQuery";
 
 const SignUpPage = function SignUpPage() {
+  const navigate = useNavigate();
   return (
     <Base>
       <MobileImageWrapper>
@@ -51,8 +53,8 @@ const SignUpPage = function SignUpPage() {
           <CertificationInput placeholder="인증번호 입력" />
           <RegisterButton>가입하기</RegisterButton>
           <RegisterInfoContainer>
-            <RegisterInfoText>이미 계정이 있으신가요? </RegisterInfoText>
-            <Login>Log In</Login>
+            <RegisterInfoText>이미 계정이 있으신가요?</RegisterInfoText>
+            <Login onClick={() => navigate("/login")}>Log In</Login>
           </RegisterInfoContainer>
         </RegisterContainer>
       </MainContainer>
@@ -72,6 +74,7 @@ const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 20px;
 `;
 
 const RegisterText = styled.p`
@@ -194,6 +197,7 @@ const CertificationInput = styled(CustomInput)`
 
 const RegisterButton = styled(CustomButton)`
   width: 100%;
+  margin-bottom: 24px;
 `;
 
 const RegisterInfoContainer = styled.div`
@@ -203,6 +207,7 @@ const RegisterInfoContainer = styled.div`
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
+  margin-bottom: 40px;
   ${mediaQueries(MOBILE)} {
     margin-top: 24px;
   }

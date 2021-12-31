@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import {
   Base,
@@ -13,6 +14,7 @@ import { CustomInput } from "../../styles/CustomInput";
 import { CustomButton } from "../../styles/CustomButton";
 
 const LoginPage = function LoginPage() {
+  const navigate = useNavigate();
   return (
     <Base>
       <ImageWrapper>
@@ -35,7 +37,7 @@ const LoginPage = function LoginPage() {
           <LoginInfoContainer>
             <SearchId>아이디 찾기</SearchId>
             <SearchPwd>비밀번호 찾기</SearchPwd>
-            <Register>회원가입</Register>
+            <Register onClick={() => navigate("/signup")}>회원가입</Register>
           </LoginInfoContainer>
         </LoginContainer>
       </MainContainer>
@@ -129,7 +131,7 @@ const Search = styled.p`
 
 const SearchId = styled(Search)``;
 const SearchPwd = styled(Search)``;
-const Register = styled.a`
+const Register = styled.div`
   cursor: pointer;
   color: ${BLUE01};
   margin: 0 5px;

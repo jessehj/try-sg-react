@@ -3,7 +3,6 @@ import { BLUE01 } from "./Variables";
 
 export const CustomButton = styled.button`
   cursor: pointer;
-  background-color: ${BLUE01};
   color: #fff;
   font-size: 16px;
   line-height: 24px;
@@ -11,4 +10,5 @@ export const CustomButton = styled.button`
   height: 64px;
   border: none;
   border-radius: 8px;
+  background-color: ${BLUE01};
 `;

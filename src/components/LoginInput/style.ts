@@ -13,8 +13,9 @@ export const InputWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 960px;
-    height: 1080px;
+    width: 50%;
+    height: 100%;
+    background-color: ${Theme.Colors.WHITE};
   }
 `;
 export const InputContainer = styled.div`

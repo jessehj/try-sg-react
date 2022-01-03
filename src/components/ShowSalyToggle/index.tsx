@@ -7,8 +7,8 @@ const ShowSaly = function () {
     <style.SalyWrap>
       <Saly
         style={{
-          width: "70%",
-          height: "70%",
+          width: "80%",
+          height: "80%",
           maxWidth: "581px",
           maxHeight: "581px",
           minWidth: "164px",

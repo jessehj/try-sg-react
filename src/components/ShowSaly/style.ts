@@ -11,8 +11,8 @@ export const SalyWrap = styled.div`
   }
   @media ${Theme.DeviceSize.DESKTOP} {
     display: flex;
-    width: 960px;
-    height: 1080px;
+    width: 50%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     background-color: ${Theme.Colors.GRAY_ONE};

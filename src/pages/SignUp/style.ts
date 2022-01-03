@@ -22,8 +22,8 @@ export const SignUpSize = styled.div`
   @media ${Theme.DeviceSize.DESKTOP} {
     flex-direction: row;
     width: 100%;
-    max-width: 1920px;
-    padding: 0px 20px 0px 20px;
+    height: 100%;
+    padding: 0px;
   }
 `;
 export default {

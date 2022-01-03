@@ -77,7 +77,7 @@ const SignUpInput = function () {
                 ""
               ) : (
                 <style.NoticeText toggle={isIdType}>
-                  *한글/영문 2자리 이상
+                  *영문/숫자 6자리 이상
                 </style.NoticeText>
               )}
               <style.InputNomal
@@ -207,7 +207,8 @@ const SignUpInput = function () {
           )}
         </Formik>
         <style.AlreadyWrap>
-          이미 계정이 있으신가요?&nbsp;<AlreadyLink to="/">Log In</AlreadyLink>
+          이미 계정이 있으신가요?&nbsp;
+          <AlreadyLink to="/login">Log In</AlreadyLink>
         </style.AlreadyWrap>
       </style.SignInContainer>
     </style.SignInWrap>

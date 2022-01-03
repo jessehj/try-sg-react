@@ -3,7 +3,7 @@ import MainMobile from "../../components/MainMobile";
 import MainPc from "../../components/MainPc";
 
 const Main = function () {
-  const [deviceSize, setDeviceSize] = useState<number>(1);
+  const [deviceSize, setDeviceSize] = useState<number>(window.innerWidth);
   const checkSize = () => {
     setDeviceSize(window.innerWidth);
   };

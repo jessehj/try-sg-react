@@ -10,11 +10,12 @@ export const SignInWrap = styled.div`
     justify-content: center;
   }
   @media ${Theme.DeviceSize.DESKTOP} {
-    width: 960px;
-    height: 1080px;
+    width: 50%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: ${Theme.Colors.WHITE};
   }
 `;
 export const SignInContainer = styled.div`

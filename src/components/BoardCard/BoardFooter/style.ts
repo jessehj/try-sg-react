@@ -6,10 +6,11 @@ const StyledBoardFooter = styled.div`
   height: 50px;
   display: flex;
   flex-direction: row;
+
   justify-content: space-between;
   align-items: center;
   min-width: 100%;
-  position: relative;
+  position: absolute;
   bottom: 0px;
   border-top: 1px solid #ebecf3;
 `;

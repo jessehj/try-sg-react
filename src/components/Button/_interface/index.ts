@@ -5,4 +5,5 @@ export default interface ButtonProps {
   children: React.ReactNode;
   width?: string;
   margin?: string;
+  onClick?: (e: React.MouseEvent) => void;
 }

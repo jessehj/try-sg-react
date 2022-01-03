@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SpanProps from "./interface";
+import SpanProps from "./_interface";
 
 const StyledSpan = styled.span<SpanProps>`
   font-size: ${({ fontSize }) => {

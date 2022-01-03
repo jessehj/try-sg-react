@@ -6,6 +6,7 @@ export interface FlexItemProps {
   flexShrink?: string;
 }
 const FlexItem = styled.div<FlexItemProps>`
+  width: fit-content;
   flex-basis: ${({ flexBasis }) => {
     if (flexBasis) return flexBasis;
     return "none";

@@ -19,7 +19,9 @@ const ButtonText = styled.div<{ btnType: string }>`
     return "24px";
   }};
   color: ${({ btnType }) => {
-    return btnType.includes("negative") ? "#397ef6" : "#FFFFFF";
+    return btnType.includes("negative") || btnType === "basic_icon"
+      ? "#397ef6"
+      : "#FFFFFF";
   }};
   height: ${({ btnType }) => {
     if (btnType.startsWith("basic")) return "20px";

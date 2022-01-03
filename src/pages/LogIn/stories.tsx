@@ -17,5 +17,5 @@ export const defaultLoginPage = () => {
 };
 
 defaultLoginPage.story = {
-  name: "LogInPage",
+  name: "LogIn Page",
 };

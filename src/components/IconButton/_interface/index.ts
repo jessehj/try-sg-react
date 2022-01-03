@@ -3,4 +3,5 @@ export default interface IconButtonProps {
   width?: string;
   height?: string;
   margin?: string;
+  onClick?: (e: React.MouseEvent) => void;
 }

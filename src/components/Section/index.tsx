@@ -14,8 +14,13 @@ export default Section;
 
 const StyledSection = styled.section<SectionProps>`
   position: relative;
+  width: 100%;
   top: ${({ top }) => {
     if (top) return top;
     return "80px";
   }};
+
+  height: fit-content;
+  display: flex;
+  justify-content: center;
 `;

@@ -16,5 +16,5 @@ export const defaultMyPage = () => {
   );
 };
 defaultMyPage.story = {
-  name: "MyPage",
+  name: "My Page Page",
 };

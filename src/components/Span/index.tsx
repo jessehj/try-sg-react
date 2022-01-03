@@ -1,5 +1,5 @@
 import React from "react";
-import SpanProps from "./interface";
+import SpanProps from "./_interface";
 import StyledSpan from "./style";
 
 const Span: React.FC<SpanProps> = function Span({

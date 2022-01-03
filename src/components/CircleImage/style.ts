@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CircleImageProps from "./interface";
+import CircleImageProps from "./_interface";
 
 const StyledCircleImage = styled.div<CircleImageProps>`
   background-image: ${({ src }) => `url(${src})`};

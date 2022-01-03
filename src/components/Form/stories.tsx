@@ -2,7 +2,7 @@ import React from "react";
 import Form from "./style";
 import Input from "../Input";
 import Span from "../Span";
-import { FormProps } from "./interface";
+import { FormProps } from "./_interface";
 import Button from "../Button";
 import TextButton from "../TextButton";
 
@@ -32,7 +32,11 @@ const defaultProp: FormProps = {
         로그인
       </Button>
       <TextButton
-        texts={["아이디 찾기", "비밀번호 찾기", "회원가입"]}
+        texts={[
+          { text: "아이디 찾기" },
+          { text: "비밀번호 찾기" },
+          { text: "회원가입", color: "#397EF6" },
+        ]}
         suffix=" | "
       />
     </>

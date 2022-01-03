@@ -1,6 +1,6 @@
 import React from "react";
 import StyledCircleImage from "./style";
-import CircleImageProps from "./interface";
+import CircleImageProps from "./_interface";
 
 const CircleImage: React.FC<CircleImageProps> = function CircleImage({
   width,

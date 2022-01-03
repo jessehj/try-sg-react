@@ -1,4 +1,5 @@
 import React from "react";
+
 import ImageSection from "../../components/ImageSection";
 import FlexContainer from "../../style/FlexContainer";
 import WelcomeSection from "./WelcomeSection";
@@ -8,7 +9,7 @@ const Welcome: React.FC = function Welcome() {
   return (
     <Section top="0px">
       <FlexContainer>
-        <ImageSection />
+        <ImageSection mobile />
         <WelcomeSection />
       </FlexContainer>
     </Section>

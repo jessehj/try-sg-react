@@ -1,13 +1,13 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import QueryString from "qs";
-import { RequestParams } from "../types";
-import { REQUEST_TIMEOUT_DEFAULT } from "../constants";
+import { RequestParams, DefaultErrorInterface } from "../types";
+import { REQUEST_TIMEOUT_DEFAULT, ErrorCode } from "../constants";
 
 export default async ({
   method,
   url,
   queryParams,
-  body,
+  data,
   headers,
   isMultipart,
 }: RequestParams): Promise<AxiosResponse> => {
@@ -15,7 +15,7 @@ export default async ({
     url,
     method,
     params: queryParams,
-    data: body,
+    data,
     baseURL: process.env.REACT_APP_ROOT_URL,
     timeout: REQUEST_TIMEOUT_DEFAULT,
     paramsSerializer: (params) =>
@@ -48,7 +48,16 @@ export default async ({
     (response) => {
       return response;
     },
-    (error) => {
+    (error: AxiosError<DefaultErrorInterface>) => {
+      const originalRequest = error.config;
+      if (error.response?.data?.code === ErrorCode.INVALD_AUTH_TOKEN) {
+        if (error.response?.data?.value?.["x-auth-token"]) {
+          axios.defaults.headers.common["x-auth-token"] =
+            error.response?.data?.value?.["x-auth-token"];
+          return axios(originalRequest);
+        }
+        return Promise.reject(error);
+      }
       return Promise.reject(error);
     }
   );

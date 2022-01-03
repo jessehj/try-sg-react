@@ -10,10 +10,10 @@ export default {
 export const defaultBoardCard = () => {
   return (
     <BoardCard
-      isOwner={false}
       src={exampleImage}
-      title="타이틀입니다."
-      explain="설명입니다."
+      title="커머스에서 장바구니를 구성하는 방법들"
+      explain="설명입니다. 로그인 성공함.테스트용설명입니다.테스트용설명입니다.테스트용 설명입니다."
+      tags={["화이팅", "서비스 기획"]}
     />
   );
 };
@@ -23,13 +23,14 @@ defaultBoardCard.story = {
 export const loginBoardCard = () => {
   return (
     <BoardCard
-      isOwner
       src={exampleImage}
-      title="로그인 성공시 카드입니다."
-      explain="설명입니ㄷ,. 로그인 성공함"
+      title="커머스에서 장바구니를 구성하는 방법"
+      explain="설명입니다. 로그인 성공함.테스트용설명입니다.테스트용설명입니다.테스트용 설명입니다."
+      tags={[]}
+      owner="hu"
     />
   );
 };
 loginBoardCard.story = {
-  name: "lobinBoardCard",
+  name: "loginBoardCard",
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Button from "./index";
-import ButtonProps from "./interface";
+import ButtonProps from "./_interface";
 
 export default {
   component: Button,

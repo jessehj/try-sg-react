@@ -1,7 +1,7 @@
 import React from "react";
 
 import Span from "./index";
-import SpanProps from "./interface";
+import SpanProps from "./_interface";
 
 export default {
   component: Span,

@@ -16,5 +16,5 @@ export const defaultSignUp = () => {
   );
 };
 defaultSignUp.story = {
-  name: "Sign Up",
+  name: "SignUp Page",
 };

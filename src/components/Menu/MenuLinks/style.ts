@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import {
+  FROM_TABLET_TO_PHONE,
+  MediaQueries,
+} from "../../../style/MediaQueries";
 
 const MenuLink = styled.span`
   font-style: normal;
@@ -21,6 +25,19 @@ const MenuLink = styled.span`
   order: 0;
   flex-grow: 0;
   margin: 0px 24px;
+  &:hover {
+    color: #397ef6;
+    cursor: pointer;
+  }
+  ${MediaQueries(FROM_TABLET_TO_PHONE)} {
+    font-size: 22px;
+    line-height: 33px;
+    font-weight: 700;
+    margin: 12px 0;
+    justify-content: center;
+    text-align: center;
+    width: fit-content;
+  }
 `;
 
 export default MenuLink;

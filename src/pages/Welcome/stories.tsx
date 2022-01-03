@@ -17,5 +17,5 @@ export const defaultWelcome = () => {
 };
 
 defaultWelcome.story = {
-  name: "Welcome",
+  name: "Welcome Page",
 };

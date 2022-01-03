@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+  FROM_PHONE_TO_SMALL_PHONE,
+  FROM_TABLET_TO_PHONE,
+  MediaQueries,
+} from "../MediaQueries";
 
 export interface FlexContainerProps {
   direction?: string;
@@ -10,6 +15,8 @@ export interface FlexContainerProps {
   margin?: string;
   padding?: string;
   flex?: string;
+  mobile?: boolean;
+  wrap?: string;
 }
 
 const FlexContainer = styled.div<FlexContainerProps>`
@@ -39,9 +46,10 @@ const FlexContainer = styled.div<FlexContainerProps>`
     if (width) return width;
     return "100%";
   }};
-  height: ${({ height }) => {
+  height: ${({ height, mobile }) => {
     if (height) return height;
-    return "100vh";
+    if (mobile === false) return "unset";
+    return "unset";
   }};
   background-color: ${({ backgroundColor }) => {
     if (backgroundColor) return backgroundColor;
@@ -55,5 +63,27 @@ const FlexContainer = styled.div<FlexContainerProps>`
     if (margin) return margin;
     return "0 0 0 0";
   }};
+  flex-wrap: ${({ wrap }) => {
+    if (wrap) return wrap;
+    return "wrap";
+  }};
+  ${MediaQueries(FROM_TABLET_TO_PHONE)} {
+ 
+    min-width:95%;
+    
+    background-color: #fafafa;
+    display: ${({ mobile }) => {
+      if (mobile) return `none`;
+      return `flex`;
+    }};
+  } ;
+  ${MediaQueries(FROM_PHONE_TO_SMALL_PHONE)}{
+    background-color: #fafafa;
+    min-width:95%;
+    
+ 
+  }
+}
 `;
+
 export default FlexContainer;

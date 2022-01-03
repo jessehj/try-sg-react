@@ -1,13 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 import StyledBoardCard from "./style";
-import BoardCardProps from "./interface";
+import BoardCardProps from "./_interface";
 import BoardTitle from "./BoardTitle";
 import BoardExplain from "./BoardExplain";
 import ThumbnailImage from "./ThumbnailImage";
 import Hr from "../Hr";
-
+import FlexContainer from "../../style/FlexContainer";
+import FlexItem from "../../style/FlexItem";
 import BoardFooter from "./BoardFooter";
 import exampleImage from "../../assets/image/exampleUser.svg";
+import BoardTags from "./BoardTags";
+import { FROM_TABLET_TO_PHONE, MediaQueries } from "../../style/MediaQueries";
 
 const BoardCard: React.FC<BoardCardProps> = function BoardCard({
   width,
@@ -15,21 +19,42 @@ const BoardCard: React.FC<BoardCardProps> = function BoardCard({
   title,
   explain,
   src,
-  isOwner,
+  owner,
+  tags,
 }) {
   return (
-    <StyledBoardCard isOwner={isOwner} src={src} width={width} height={height}>
-      <ThumbnailImage src={src} />
-      <BoardTitle>{title}</BoardTitle>
-      <BoardExplain>{explain}</BoardExplain>
+    <StyledBoardCard src={src} width={width} height={height}>
+      {src ? <ThumbnailImage src={src} /> : null}
+      <StyleBoardContainer
+        height="fit-content"
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        margin="24px 12px"
+        width="87.5%"
+      >
+        <FlexItem>
+          <BoardTitle>{title}</BoardTitle>
+        </FlexItem>
+        <FlexItem>
+          <BoardExplain>{explain}</BoardExplain>
+        </FlexItem>
+        <FlexItem>
+          <BoardTags tags={tags} />
+        </FlexItem>
+      </StyleBoardContainer>
       <Hr />
-
       <BoardFooter
-        isOwner={isOwner}
+        isOwner={owner !== undefined}
         userProfileImg={exampleImage}
-        userName="민기"
+        userName={owner}
       />
     </StyledBoardCard>
   );
 };
 export default BoardCard;
+const StyleBoardContainer = styled(FlexContainer)`
+  ${MediaQueries(FROM_TABLET_TO_PHONE)} {
+    background-color: #ffffff;
+  }
+`;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledHr = styled.div`
-  width: inherit;
+  min-width: inherit;
   height: 1px;
   border: 1px solid #ebecf3;
   background-color: #ebecf3;

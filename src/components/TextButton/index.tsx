@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledTextButton, TextButtonGroup } from "./styles";
-import TextButtonProps from "./interface";
+import TextButtonProps from "./_interface";
 
 const TextButton: React.FC<TextButtonProps> = function TextButton({
   texts,
@@ -10,8 +10,26 @@ const TextButton: React.FC<TextButtonProps> = function TextButton({
     <TextButtonGroup>
       {texts.map((text, index) => {
         if (index !== texts.length - 1)
-          return <StyledTextButton>{`${text}${suffix}`}</StyledTextButton>;
-        return <StyledTextButton color="#397EF6">{text} </StyledTextButton>;
+          return (
+            <StyledTextButton
+              text={text.text}
+              onClick={text.onClick}
+              color={text.color}
+              key={String(index).concat(text.text) + text.text}
+            >
+              {`${text.text}${suffix}`}
+            </StyledTextButton>
+          );
+        return (
+          <StyledTextButton
+            text={text.text}
+            onClick={text.onClick}
+            color={text.color}
+            key={String(index).concat(text.text)}
+          >
+            {text.text}
+          </StyledTextButton>
+        );
       })}
     </TextButtonGroup>
   );

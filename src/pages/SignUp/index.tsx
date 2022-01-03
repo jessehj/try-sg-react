@@ -9,7 +9,7 @@ const SignUp: React.FC = function SignUp() {
   return (
     <Section top="0px">
       <FlexContainer>
-        <ImageSection />
+        <ImageSection mobile />
         <SignUpSection />
       </FlexContainer>
     </Section>

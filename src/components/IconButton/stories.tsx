@@ -1,6 +1,6 @@
 import React from "react";
 import IconButton from "./index";
-import IconButtonProps from "./interface";
+import IconButtonProps from "./_interface";
 import exampleIcon from "../../assets/icon/Rewrite.svg";
 
 export default {

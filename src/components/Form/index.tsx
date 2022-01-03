@@ -1,6 +1,6 @@
 import React from "react";
 import StyledForm from "./style";
-import { FormProps } from "./interface";
+import { FormProps } from "./_interface";
 
 const Form: React.FC<FormProps> = function Form({
   width,

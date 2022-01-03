@@ -1,7 +1,7 @@
 import React from "react";
 
 import Input from "./index";
-import InputProps from "./interface";
+import InputProps from "./_interface";
 
 export default {
   component: Input,
@@ -18,12 +18,26 @@ defaultInput.story = {
   name: "defaultInput",
 };
 const idProps: InputProps = {
-  inputName: "id",
+  inputName: "Id",
   children: undefined,
 };
 export const idInput = () => {
-  return <Input inputName={idProps.inputName} />;
+  return (
+    <Input isTimer placeholder="아이디" inputName={idProps.inputName}>
+      아이디
+    </Input>
+  );
+};
+const pwdProps: InputProps = {
+  inputName: "Pwd",
+  children: undefined,
+};
+export const pwdInput = () => {
+  return <Input placeholder="비밀 번호" inputName={pwdProps.inputName} />;
 };
 idInput.story = {
   name: "idInput",
+};
+pwdInput.story = {
+  name: "pwdInput",
 };

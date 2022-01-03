@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    es6: true,
   },
   extends: [
     "eslint:recommended",
@@ -24,9 +25,13 @@ module.exports = {
   plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
     "prettier/prettier": "error",
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      { functions: true, classes: true, variables: false },
+    "@typescript-eslint/no-use-before-define": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        namedComponents: "arrow-function",
+        unnamedComponents: "arrow-function",
+      },
     ],
     "react/require-default-props": "off",
   },

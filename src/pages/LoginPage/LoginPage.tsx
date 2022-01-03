@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 
 import {
   Base,
@@ -12,34 +14,61 @@ import {
 import { GRAY03, BLUE01 } from "../../styles/Variables";
 import { CustomInput } from "../../styles/CustomInput";
 import { CustomButton } from "../../styles/CustomButton";
+import { loginAsync } from "../../redux/modules/login";
 
 const LoginPage = function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      accountId: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      dispatch(loginAsync.request(values));
+    },
+  });
+
   return (
     <Base>
       <ImageWrapper>
         <Image src="images/Saly-22.svg" />
       </ImageWrapper>
-      <MainContainer>
+      <MainContainer direction={false}>
+        <LoginText>Log In</LoginText>
         <LoginContainer>
-          <LoginText>Log In</LoginText>
-          <LoginInputContainer>
+          <LoginInputContainer onSubmit={formik.handleSubmit}>
             <IdInputContainer>
-              <IdInput placeholder="아이디" />
+              <IdInput
+                id="accountId"
+                name="accountId"
+                placeholder="아이디"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.accountId}
+              />
               <IdInputICon src="icons/user-icon.svg" />
             </IdInputContainer>
             <PwdInputContainer>
-              <PwdInput placeholder="비밀번호" />
+              <PwdInput
+                id="password"
+                name="password"
+                placeholder="비밀번호"
+                type="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              />
               <PwdInputICon src="icons/pwd-icon.svg" />
             </PwdInputContainer>
+            <LoginButton type="submit">로그인</LoginButton>
           </LoginInputContainer>
-          <LoginButton>로그인</LoginButton>
-          <LoginInfoContainer>
-            <SearchId>아이디 찾기</SearchId>
-            <SearchPwd>비밀번호 찾기</SearchPwd>
-            <Register onClick={() => navigate("/signup")}>회원가입</Register>
-          </LoginInfoContainer>
         </LoginContainer>
+        <LoginInfoContainer>
+          <SearchId>아이디 찾기</SearchId>
+          <SearchPwd>비밀번호 찾기</SearchPwd>
+          <Register onClick={() => navigate("/signup")}>회원가입</Register>
+        </LoginInfoContainer>
       </MainContainer>
     </Base>
   );
@@ -55,7 +84,7 @@ const LoginText = styled.p`
   margin-bottom: 20px;
 `;
 
-const LoginInputContainer = styled.div`
+const LoginInputContainer = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;

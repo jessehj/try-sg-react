@@ -1,42 +1,43 @@
-import { createAction, handleActions } from "redux-actions";
-import { LoginState, UserInfo } from "../../@types/logintype";
+import { createReducer, ActionType, createAsyncAction } from "typesafe-actions";
+import { AxiosError } from "axios";
+import { LoginReqType, LoginState, UserType } from "../../@types/logintype";
 
 const prefix = "try-sg-react/login";
+export const PENDING = `${prefix}/PENDING` as const;
+export const SUCCESS = `${prefix}/SUCCESS` as const;
+export const FAIL = `${prefix}/FAIL` as const;
 
-const PENDING = `${prefix}/PENDING` as const;
-const SUCCESS = `${prefix}/SUCCESS` as const;
-const FAIL = `${prefix}/FAIL` as const;
+export const loginAsync = createAsyncAction(PENDING, SUCCESS, FAIL)<
+  LoginReqType,
+  UserType,
+  AxiosError
+>();
 
-export const pending = createAction(PENDING);
-export const success = createAction(SUCCESS, (req: UserInfo) => req);
-export const fail = createAction(FAIL, (err: Error) => err);
+const actions = { loginAsync };
+type LoginActionType = ActionType<typeof actions>;
 
 const initialState: LoginState = {
   data: null,
-  loading: false,
+  isLoading: false,
   error: null,
 };
 
-const reducer = handleActions<LoginState, UserInfo>(
-  {
-    [PENDING]: (state) => ({
-      ...state,
-      loading: true,
-      error: null,
-    }),
-    [SUCCESS]: (state, { payload }) => ({
-      data: payload,
-      loading: false,
-      error: null,
-    }),
-    [FAIL]: (state, action: any) => ({
-      ...state,
-      loading: false,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
-      error: action.payload,
-    }),
-  },
-  initialState
-);
+const reducer = createReducer<LoginState, LoginActionType>(initialState, {
+  [PENDING]: (state) => ({
+    ...state,
+    isLoading: true,
+    error: null,
+  }),
+  [SUCCESS]: (state, { payload }) => ({
+    data: payload,
+    isLoading: false,
+    error: null,
+  }),
+  [FAIL]: (state, { payload }) => ({
+    ...state,
+    isLoading: false,
+    error: payload,
+  }),
+});
 
 export default reducer;

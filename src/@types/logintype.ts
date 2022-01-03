@@ -1,17 +1,23 @@
-export interface UserInfo {
+export interface UserType {
   id: number;
   accountId: string;
   name: string;
-  email: string;
+  email?: string;
   phone: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface LoginInfo {
-  id: string;
+export interface LoginResType {
+  row: UserType;
+}
+
+export interface LoginReqType {
+  accountId: string;
   password: string;
 }
 
-export interface RegisterInfo {
+export interface RegisterResType {
   accountId: string;
   name: string;
   email?: string;
@@ -21,7 +27,7 @@ export interface RegisterInfo {
 }
 
 export interface LoginState {
-  data: UserInfo | null;
-  loading: boolean;
+  data: UserType | null;
+  isLoading: boolean;
   error: Error | null;
 }

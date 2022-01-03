@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 
 import { CustomInput } from "../../styles/CustomInput";
 import { CustomButton } from "../../styles/CustomButton";
@@ -16,24 +17,54 @@ import { mediaQueries, MOBILE } from "../../styles/MediaQuery";
 
 const SignUpPage = function SignUpPage() {
   const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      accountId: "",
+      password: "",
+      confirmPwd: "",
+      name: "",
+      email: "",
+      phone: "",
+      cert: "",
+    },
+    onSubmit: (values) => {
+      alert(JSON.stringify(values));
+    },
+  });
+
   return (
     <Base>
       <MobileImageWrapper>
         <Image src="images/Saly-22.svg" />
       </MobileImageWrapper>
-      <MainContainer>
-        <RegisterContainer>
-          <RegisterText>Sign Up</RegisterText>
+      <MainContainer direction={false}>
+        <RegisterText>Sign Up</RegisterText>
+        <RegisterContainer onSubmit={formik.handleSubmit}>
           <IdContainer>
             <IdInputContainer>
-              <IdInput placeholder="아이디" />
+              <IdInput
+                type="text"
+                id="accountId"
+                name="accountId"
+                placeholder="아이디"
+                onChange={formik.handleChange}
+                value={formik.values.accountId}
+              />
               <IdInputICon src="icons/user-icon.svg" />
             </IdInputContainer>
             <IdButton>중복확인</IdButton>
           </IdContainer>
           <PwdContainer>
             <PwdInputContainer>
-              <PwdInput placeholder="비밀번호" />
+              <PwdInput
+                type="password"
+                id="password"
+                name="password"
+                placeholder="비밀번호"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              />
               <PwdInputICon src="icons/pwd-icon.svg" />
             </PwdInputContainer>
             <PwdText>
@@ -41,22 +72,56 @@ const SignUpPage = function SignUpPage() {
             </PwdText>
           </PwdContainer>
           <ConfirmPwdInputContainer>
-            <ConfirmPwdInput placeholder="비밀번호 재확인" />
+            <ConfirmPwdInput
+              type="password"
+              id="confirmPwd"
+              name="confirmPwd"
+              placeholder="비밀번호 재확인"
+              onChange={formik.handleChange}
+              value={formik.values.confirmPwd}
+            />
             <ConfirmPwdInputICon src="icons/pwd-icon.svg" />
           </ConfirmPwdInputContainer>
-          <NameInput placeholder="이름" />
-          <EmailInput placeholder="이메일" />
+          <NameInput
+            type="text"
+            id="name"
+            name="name"
+            placeholder="이름"
+            onChange={formik.handleChange}
+            value={formik.values.name}
+          />
+          <EmailInput
+            type="email"
+            id="email"
+            name="email"
+            placeholder="이메일"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
           <PhoneNumberContainer>
-            <PhoneNumberInput placeholder="휴대폰 번호 입력" />
+            <PhoneNumberInput
+              id="phone"
+              name="phone"
+              placeholder="휴대폰 번호 입력"
+              onChange={formik.handleChange}
+              value={formik.values.phone}
+            />
             <PhoneNumberButton>인증번호 받기</PhoneNumberButton>
           </PhoneNumberContainer>
-          <CertificationInput placeholder="인증번호 입력" />
+          <CertificationInput
+            type="text"
+            id="cert"
+            name="cert"
+            placeholder="인증번호 입력"
+            onChange={formik.handleChange}
+            value={formik.values.cert}
+          />
           <RegisterButton>가입하기</RegisterButton>
-          <RegisterInfoContainer>
-            <RegisterInfoText>이미 계정이 있으신가요?</RegisterInfoText>
-            <Login onClick={() => navigate("/login")}>Log In</Login>
-          </RegisterInfoContainer>
         </RegisterContainer>
+        <RegisterInfoContainer>
+          <RegisterInfoText>이미 계정이 있으신가요?</RegisterInfoText>
+          <Login onClick={() => navigate("/login")}>Log In</Login>
+        </RegisterInfoContainer>
       </MainContainer>
     </Base>
   );
@@ -69,7 +134,7 @@ const MobileImageWrapper = styled(ImageWrapper)`
   }
 `;
 
-const RegisterContainer = styled.div`
+const RegisterContainer = styled.form`
   width: 320px;
   display: flex;
   flex-direction: column;
@@ -81,7 +146,7 @@ const RegisterText = styled.p`
   font-weight: 700;
   font-size: 24px;
   line-height: 36px;
-  margin-bottom: 24px;
+  margin-top: 15px;
 `;
 
 const IdContainer = styled.div`
@@ -166,7 +231,7 @@ const ConfirmPwdInputICon = styled.img`
 
 const NameInput = styled(CustomInput)`
   width: 100%;
-  margin-bottom: 15px;s
+  margin-bottom: 15px;
 `;
 
 const EmailInput = styled(CustomInput)`

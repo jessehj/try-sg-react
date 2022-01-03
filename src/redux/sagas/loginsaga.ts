@@ -1,27 +1,27 @@
-import { takeEvery, call, put } from "redux-saga/effects";
-import { createAction } from "redux-actions";
+import { put, call, takeEvery } from "redux-saga/effects";
+import { loginAsync } from "../modules/login";
+import { axiosInstance } from "../../network/api";
+import { LoginReqType, LoginResType } from "../../@types/logintype";
 
-import { LoginInfo, UserInfo } from "../../@types/logintype";
-import { fail, success, pending } from "../modules/login";
-import { loginApi } from "../../network/api/loginApi";
-import { AxiosResponse } from "axios";
+async function loginApi(req: LoginReqType): Promise<LoginResType> {
+  const res = await axiosInstance.post<LoginResType>(
+    "/account/sessions/me",
+    req
+  );
+  return res.data;
+}
 
-const prefix = "try-sg-react/login";
-const LOGIN = `${prefix}/LOGIN`;
-
-export const login = createAction(LOGIN, (req: LoginInfo) => req);
-
-function* loginSaga() {
+function* loginSaga(action: ReturnType<typeof loginAsync.request>) {
   try {
-    /* yield put(pending());
-    const res: AxiosResponse<UserInfo> = yield call(loginApi(action.payload));
-    yield put(success(res.data)); */
-  } catch (error: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const res: LoginResType = yield call(loginApi, action.payload);
+    yield put(loginAsync.success(res.row));
+  } catch (error: any | Error) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    yield put(fail(error));
+    yield put(loginAsync.failure(error));
   }
 }
 
 export function* watchLogin() {
-  yield takeEvery(LOGIN, loginSaga);
+  yield takeEvery(loginAsync.request, loginSaga);
 }

@@ -24,17 +24,17 @@ export enum ErrorCode {
 
   //  ID conflict
 
-  DUPLICATE_UD = "duplicateId",
+  DUPLICATE_UD = "duplicatedId",
 
   // Input Error
 
   INVALID_ID = "invalidId",
   INVALID_PHONE = "invalidPhone",
-  NULL_PHONE = "requirePhone",
+  REQUIRE_PHONE = "requirePhone",
 
   // Invalid Phone Auth Code
 
-  INVALID_PHONE_AUTH_CODE = "invalidAuthCode",
+  INVALID_PHONE_AUTH_CODE = "wrongAuthCode",
 
   //  Invalid User
 
@@ -51,7 +51,7 @@ export enum URL {
   LOGOUT_DELETE = "account/sessions/me",
   DUPLICATION_ID_GET = "account/id-duplication",
   SEND_MSG_TOKEN_POST = "sender/message-auth-tokens",
-  VERIFY_MSG_TOKEN_POST = "sender/message-auth-tokens",
+
   POST_GET = "posts/",
   POST_ONE_GET = "posts/",
   POST_POST = "posts/",

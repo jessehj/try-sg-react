@@ -25,6 +25,7 @@ const ButtonLayout = styled.button<ButtonProps>`
   }};
 
   background: ${({ btnType }) => {
+    if (btnType.includes("disabled")) return "#B0CBFB";
     if (btnType.includes("negative") || btnType === "basic_icon") {
       return "#FFFFFF";
     }
@@ -48,7 +49,7 @@ const ButtonLayout = styled.button<ButtonProps>`
   margin: ${({ btnType, margin }) => {
     if (btnType === "icon") return "0px 8px";
     if (margin) return margin;
-    return "0px 10px";
+    return "0px 20px";
   }};
 `;
 

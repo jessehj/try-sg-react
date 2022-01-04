@@ -25,7 +25,7 @@ const LoginInfo: React.FC<LoginProps> = function LoginInfo() {
     handleClick(e, () => LinkToLogin(nav));
   };
 
-  return logins.row?.name !== "noUser" ? (
+  return logins.row && logins.row?.name !== "noUser" ? (
     <CircleImage src={exampleImage} width="48px" height="48px" />
   ) : (
     <Button btnType="icon" onClick={handleNavToLogin}>

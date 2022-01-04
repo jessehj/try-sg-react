@@ -15,11 +15,15 @@ const Input: React.FC<InputProps> = forwardRef(
       placeholder,
       isTimer = false,
       children,
+
       message,
+      type,
+
+      onChange,
     }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
-    const msg = message;
+    const [isReadOnly, setReadOnly] = useState(false);
     let time = 180000;
 
     const minute = 60000;
@@ -34,6 +38,8 @@ const Input: React.FC<InputProps> = forwardRef(
         const TimerInterval = setInterval(() => {
           if (time <= 0) {
             clearInterval(TimerInterval);
+
+            setReadOnly(true);
             return setTimer("00:00");
           }
           time -= 1000;
@@ -43,6 +49,9 @@ const Input: React.FC<InputProps> = forwardRef(
           return setTimer(`0${timerMinute}:${timerSecond}`);
         }, 1000);
       }
+      return () => {
+        setTimer("03:00");
+      };
     }, []);
     return (
       <>
@@ -56,6 +65,9 @@ const Input: React.FC<InputProps> = forwardRef(
             name={inputName}
             value={children}
             ref={ref}
+            onChange={onChange}
+            type={type || "text"}
+            readOnly={isReadOnly}
           />
           {isTimer === true ? (
             <Timer>
@@ -70,7 +82,17 @@ const Input: React.FC<InputProps> = forwardRef(
             </Timer>
           ) : null}
         </InputLayout>
-        {msg ? <Span color="#FF6262">{msg}</Span> : null}
+        {message ? (
+          <Span
+            color="#FF6262"
+            fontSize="12px"
+            fontWeight="normal"
+            lineHeight="18px"
+            margin="0 0 0 10px"
+          >
+            {message}
+          </Span>
+        ) : null}
       </>
     );
   }
@@ -83,6 +105,6 @@ export const InputLayout = styled.div<{ width?: string }>`
 `;
 const Timer = styled.div`
   position: absolute;
-  top: 16px;
+  top: 36px;
   left: 80%;
 `;

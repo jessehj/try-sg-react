@@ -1,3 +1,3 @@
 export default interface ThumnailImageProps {
-  src: string;
+  src?: string;
 }

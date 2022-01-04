@@ -4,7 +4,8 @@ import ThumnailImageProps from "./interface";
 const StyledThumnailImage = styled.div<ThumnailImageProps>`
   width: 100%;
   min-height: 160px;
-  background-image: ${({ src }) => `url(${src})`};
+  background-image: ${({ src }) => (src ? `url(${src})` : null)};
+
   background-repeat: no-repeat;
   background-size: cover;
 `;

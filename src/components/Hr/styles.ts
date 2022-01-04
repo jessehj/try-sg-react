@@ -5,6 +5,6 @@ const StyledHr = styled.div`
   height: 1px;
   border: 1px solid #ebecf3;
   background-color: #ebecf3;
-  margin: 32px 0px;
+  margin: 32px 0px 32px 0px;
 `;
 export default StyledHr;

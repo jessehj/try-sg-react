@@ -1,4 +1,4 @@
-import { ForwardedRef } from "react";
+import React, { ForwardedRef } from "react";
 
 export default interface InputProps {
   margin?: string;
@@ -9,5 +9,8 @@ export default interface InputProps {
   children?: string;
   message?: string;
   isTimer?: boolean;
+  onChange?: (e: React.ChangeEvent) => void;
+  color?: string;
   ref?: ForwardedRef<HTMLInputElement>;
+  type?: string;
 }

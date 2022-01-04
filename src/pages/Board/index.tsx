@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import Section from "../../components/Section";
 import FlexContainer from "../../style/FlexContainer";
 import BoardCard from "../../components/BoardCard";
@@ -16,7 +17,7 @@ const Board: React.FC = function Board() {
   });
   return (
     <Section top="60px">
-      <FlexContainer alignItems="flex-start">
+      <StyledBoardList alignItems="flex-start" backgroundColor="#FAFAFA">
         <SearchBar inputName="search" placeholder="검색어를 입력하세요" />
         <FlexContainer wrap="wrap" justifyContent="center" margin="100px 0 0 0">
           {exarr.map((ex) => {
@@ -33,8 +34,9 @@ const Board: React.FC = function Board() {
           })}
         </FlexContainer>
         <PageNation />
-      </FlexContainer>
+      </StyledBoardList>
     </Section>
   );
 };
 export default Board;
+const StyledBoardList = styled(FlexContainer)``;

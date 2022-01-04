@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Form from "../../../components/Form";
 import Span from "../../../components/Span";
 import TitleSpan from "../TitleSpan";
@@ -9,10 +9,41 @@ import CircleImage from "../../../components/CircleImage";
 import Hr from "../../../components/Hr";
 import FlexContainer from "../../../style/FlexContainer";
 import exampleImg from "../../../assets/image/exampleUser.svg";
+import { getUserInfo } from "../../../network/apis";
+import { LoginResponseRowInterface } from "../../../network/types";
 
 const MyPageForm: React.FC = function MyPageForm() {
+  const [name, setName] = useState("");
+
+  const [id, setId] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [isChange, setChange] = useState(false);
+  const pwdRef = useRef<HTMLInputElement>(null);
+  const changedPwdRef = useRef<HTMLInputElement>(null);
+  const confirmChangedPwdRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    getUserInformation()
+      .then((val) => {
+        if (typeof val === "string") {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          const res: LoginResponseRowInterface = JSON.parse(val);
+          if (res.name) setName(res.name);
+          if (res.accountId) setId(res.accountId);
+          if (res.phone) setPhone(res.phone);
+          if (res.email) setEmail(res.email);
+        }
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  const getUserInformation = async () => {
+    const res = await getUserInfo();
+
+    return res;
+  };
   return (
-    <Form width="320px" height="fit-content">
+    <Form width="320px" height="fit-content" margin="0 0 0 0">
       <FlexContainer direction="column" height="max-content">
         <Span
           fontWeight="bold"
@@ -26,40 +57,118 @@ const MyPageForm: React.FC = function MyPageForm() {
         <TitleSpan>로그인 정보</TitleSpan>
       </FlexContainer>
       <SmallTitleSpan>아이디</SmallTitleSpan>
-      <Input inputName="아이디" />
+      <Input inputName="아이디" margin="12px 0 20px 0" placeholder={id} />
+
       <SmallTitleSpan>비밀번호</SmallTitleSpan>
-      <FlexContainer
-        width="320px"
-        direction="row"
-        height="fit-content "
-        margin="20px 0"
-      >
-        <Input inputName="비밀번호" width="180px" margin="0 8px 0px 0px" />
-        <Button btnType="block-positive" width="fit-content" margin="0 0 0 0">
-          비밀번호 변경
-        </Button>
-      </FlexContainer>
+      {isChange === false ? (
+        <FlexContainer
+          width="320px"
+          direction="row"
+          height="fit-content"
+          margin="0px 0 32px 0"
+        >
+          <Input
+            type="password"
+            inputName="비밀번호"
+            width="180px"
+            margin="12px 8px 0px 0px"
+            ref={pwdRef}
+            placeholder="········"
+          />
+
+          <Button
+            btnType="block-positive"
+            width="fit-content"
+            margin="12px 0 0 0"
+            onClick={() => setChange(true)}
+          >
+            비밀번호 변경
+          </Button>
+        </FlexContainer>
+      ) : null}
+      {isChange === true ? (
+        <>
+          <Input
+            type="willChangePassword"
+            inputName="password"
+            width="100%"
+            margin="12px 8px 0px 0px"
+            placeholder="현재 비밀번호를 입력하세요."
+            ref={pwdRef}
+          />
+          <Input
+            type="willChangePassword"
+            inputName=""
+            width="100%"
+            margin="12px 8px 0px 0px"
+            placeholder="새 비밀번호를 입력하세요."
+            ref={changedPwdRef}
+          />
+          <Input
+            type="confirmChangePassword"
+            inputName="새 비밀번호를 한 번 더 확인하세요."
+            width="100%"
+            margin="12px 8px 0px 0px"
+            ref={confirmChangedPwdRef}
+          />
+          <FlexContainer
+            direction="row"
+            wrap="nowrap"
+            width="320px"
+            margin="20px 0 0 0 "
+            alignItems="flex-start"
+          >
+            <Button
+              btnType="block-negative"
+              margin="12px 0 0 0"
+              width="156px"
+              onClick={() => setChange(false)}
+            >
+              변경 취소
+            </Button>
+            <Button
+              btnType="block-positive"
+              margin="12px 0 0 12px"
+              onClick={() => setChange(true)}
+              width="156px"
+            >
+              확인
+            </Button>
+          </FlexContainer>
+        </>
+      ) : null}
       <Hr />
       <TitleSpan>회원 정보</TitleSpan>
-      <FlexContainer direction="row" height="fit-content" margin="20px 0">
-        <CircleImage src={exampleImg} margin="0px 20px 0 0" />
+      <FlexContainer
+        direction="row"
+        height="fit-content"
+        margin="20px 0"
+        wrap="nowrap"
+      >
+        <CircleImage src={exampleImg} margin="0px 20px 0 0px" />
         <Button
           btnType="basic-positive"
           width="fit-content"
-          margin="0px 0px 0 0"
+          margin="20px 8px 20px 0px"
         >
           Upload picture
         </Button>
-        <Button btnType="basic-negative" width="fit-content">
+        <Button
+          btnType="basic-negative"
+          width="fit-content"
+          margin="20px 0px 20px 0"
+        >
           Delete
         </Button>
       </FlexContainer>
       <SmallTitleSpan>이름</SmallTitleSpan>
-      <Input inputName="이민기" />
+      <Input inputName="name" margin="12px 0 20px 0" placeholder={name} />
+
       <SmallTitleSpan>휴대폰</SmallTitleSpan>
-      <Input inputName="010-1234-1233" />
+      <Input inputName="phone" margin="12px 0 20px 0" placeholder={phone} />
+
       <SmallTitleSpan>이메일</SmallTitleSpan>
-      <Input />
+      <Input inputName="email" placeholder={email} />
       <Button btnType="block-positive" width="320px" margin="20px 0px 50px 0px">
         저장하기
       </Button>

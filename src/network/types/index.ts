@@ -10,8 +10,8 @@ export interface RequestParams {
 }
 //  error
 export interface DefaultErrorInterface {
-  code: string;
-  msg: string;
+  code?: string;
+  msg?: string;
   value?: ErrorValueInterface;
 }
 interface ErrorValueInterface {
@@ -35,6 +35,6 @@ export interface LoginResponseRowInterface {
   createdAt?: string;
   updatedAt?: string;
 }
-export interface LoginResponseInterface {
+export interface LoginResponseInterface extends DefaultErrorInterface {
   row: LoginResponseRowInterface;
 }

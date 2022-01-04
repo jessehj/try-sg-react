@@ -7,7 +7,7 @@ const StyledBoardCard = styled.div<BoardCardProps>`
     if (width) return width;
     return "282px";
   }};
-  margin: 24px;
+  margin: 24px 12px 24px 12px;
   position: relative;
   min-width: 282px;
   height: 380px;

@@ -7,7 +7,7 @@ const TitleSpan: React.FC = function TitleSpan({ children }) {
       fontWeight="700"
       fontSize="18px"
       lineHeight="27px"
-      margin="20px 0px"
+      margin="32px 0px 20px 0"
       textAlign="left"
     >
       {children}

@@ -9,6 +9,7 @@ const TextButtonGroup = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: #c9c9d2;
+  margin-top: 12px;
 `;
 const StyledTextButton = styled.span<TextItem>`
   /* Body/Body2, 14-B */

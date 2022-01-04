@@ -7,7 +7,7 @@ const SmallTitleSpan: React.FC = function SmallTitleSpan({ children }) {
       fontWeight="normal"
       fontSize="14px"
       lineHeight="20px"
-      margin="12px 0px"
+      margin="20px 0 12px 0"
       textAlign="left"
     >
       {children}

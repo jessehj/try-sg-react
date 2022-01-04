@@ -23,7 +23,12 @@ const idProps: InputProps = {
 };
 export const idInput = () => {
   return (
-    <Input isTimer placeholder="아이디" inputName={idProps.inputName}>
+    <Input
+      isTimer
+      placeholder="아이디"
+      message="안녕하세요"
+      inputName={idProps.inputName}
+    >
       아이디
     </Input>
   );

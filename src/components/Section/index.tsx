@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FROM_TABLET_TO_PHONE, MediaQueries } from "../../style/MediaQueries";
 
 export interface SectionProps {
   top?: string;
@@ -23,4 +24,9 @@ const StyledSection = styled.section<SectionProps>`
   height: fit-content;
   display: flex;
   justify-content: center;
+  ${MediaQueries(FROM_TABLET_TO_PHONE)}{
+    top:${({ top }) => {
+      if (top) return top;
+      return 0;
+    }}
 `;

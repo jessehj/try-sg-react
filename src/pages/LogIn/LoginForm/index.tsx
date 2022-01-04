@@ -30,7 +30,13 @@ const LoginForm: React.FC = function LoginForm() {
     password: string | undefined
   ) => {
     console.log(IdRef.current?.value, PwdRef.current?.value);
-    dispatch(sendLoginAction.request(JSON.stringify({ accountId, password })));
+    try {
+      dispatch(
+        sendLoginAction.request(JSON.stringify({ accountId, password }))
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -48,7 +54,7 @@ const LoginForm: React.FC = function LoginForm() {
         <Input inputName="아이디" ref={IdRef} />
         <Input inputName="비밀번호" ref={PwdRef} />
         <Button
-          margin="0 0"
+          margin="10px 0 20px 0"
           btnType="block_positive"
           width="100%"
           onClick={(e) =>

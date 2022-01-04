@@ -5,7 +5,7 @@ import Section from "../../components/Section";
 
 const MyPage: React.FC = function MyPage() {
   return (
-    <Section top="170px">
+    <Section>
       <FlexContainer direction="row" alignItems="center" padding="10px">
         <MyPageForm />
       </FlexContainer>

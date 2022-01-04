@@ -14,7 +14,7 @@ const HeaderLayout = styled.header`
   left: 0px;
   right: 0px;
   top: 0px;
-
+  z-index: 50;
   /* White/White100 */
 
   background: #ffffff;

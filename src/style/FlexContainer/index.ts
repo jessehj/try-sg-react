@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import {
   FROM_PHONE_TO_SMALL_PHONE,
   FROM_TABLET_TO_PHONE,
@@ -71,14 +72,14 @@ const FlexContainer = styled.div<FlexContainerProps>`
  
     min-width:95%;
     
-    background-color: #fafafa;
+   
     display: ${({ mobile }) => {
       if (mobile) return `none`;
       return `flex`;
     }};
   } ;
   ${MediaQueries(FROM_PHONE_TO_SMALL_PHONE)}{
-    background-color: #fafafa;
+    
     min-width:95%;
     
  

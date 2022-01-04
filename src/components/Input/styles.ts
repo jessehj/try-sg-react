@@ -16,7 +16,7 @@ const StyledInput = styled.input<InputProps>`
   }};
   height: ${({ height }) => {
     if (height) return height;
-    return height;
+    return "56px";
   }};
 
   /* White/White100 */
@@ -32,10 +32,31 @@ const StyledInput = styled.input<InputProps>`
   flex: none;
   order: 0;
   flex-grow: 0;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+
+  /* gray/gray2 */
+  color: #222222;
+  background-image: ${({ inputName }) => {
+    if (inputName === "Id") return `url(${IdIcon})`;
+    if (inputName?.startsWith("Pwd")) return `url(${PwdIcon})`;
+    return "none";
+  }};
+  background-repeat: no-repeat;
+  background-position: right;
+  /* Inside Auto Layout */
+
+  order: 0;
+
   margin: ${({ margin }) => {
     if (margin) return margin;
     return "10px 0px";
   }};
+
   &::placeholder {
     /* Body/Body1, 16-B */
 

@@ -1,11 +1,21 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { DefaultErrorInterface, LoginResponseInterface } from "../types";
+import {
+  DefaultErrorInterface,
+  LoginRequestInterface,
+  LoginResponseInterface,
+  PhoneRequestInterface,
+  PhoneTokenResponseInterface,
+  PostRowResponseInterface,
+  PostsDetailInterface,
+  PostsRowsResponseInterface,
+  SignUpRequestInterface,
+} from "../types";
 import { ErrorCode, HttpMethod, URL } from "../constants";
 
 import Request from "../request";
 
 export const sendLoginAPI = async (
-  data: FormData | unknown | string
+  data: LoginRequestInterface
 ): Promise<unknown | AxiosResponse<LoginResponseInterface>> => {
   try {
     const res = await Request({
@@ -13,24 +23,16 @@ export const sendLoginAPI = async (
       url: URL.LOGIN_POST,
       data,
     });
-
+    console.log(res.headers);
     axios.defaults.headers.common["x-auth-token"] = res.headers["x-auth-token"];
-    console.log(res.data);
+
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return res.data;
   } catch (error) {
-    if (
-      (error as AxiosError<DefaultErrorInterface>).response?.data.code ===
-      ErrorCode.NO_USER
-    ) {
-      return (error as AxiosError<DefaultErrorInterface>).response?.data;
+    if ((error as AxiosError).response?.status === 404) {
+      console.log((error as AxiosError).response?.data);
     }
-    if (
-      (error as AxiosError<DefaultErrorInterface>).response?.data.code ===
-      ErrorCode.WRONG_PASSWORD
-    ) {
-      return (error as AxiosError<DefaultErrorInterface>).response?.data;
-    }
+    console.log((error as AxiosError).response?.data);
     return error;
   }
 };
@@ -45,6 +47,7 @@ export const sendLogout = async (): Promise<any> => {
     return error;
   }
 };
+
 export const getUserInfo = async (): Promise<string | undefined> => {
   try {
     const res: AxiosResponse = await Request({
@@ -67,31 +70,29 @@ export const checkDuplicate = async (
     if (!data) return "empty";
 
     await Request({
-      method: HttpMethod.POST,
+      method: HttpMethod.GET,
       url: `${URL.DUPLICATION_ID_GET}/${data}`,
     });
     return "ok";
   } catch (error) {
-    if (
-      (error as AxiosError<DefaultErrorInterface>).response?.data.code ===
-      ErrorCode.DUPLICATE_UD
-    ) {
-      return "no";
+    console.log(error);
+    if ((error as AxiosError<DefaultErrorInterface>).response?.status === 409) {
+      return "duplicate";
     }
 
     return error;
   }
 };
 export const sendPhoneAuthReq = async (
-  data: string | undefined
+  data: PhoneRequestInterface | undefined
 ): Promise<unknown | AxiosResponse<DefaultErrorInterface>> => {
   try {
-    if (!data) return "empty";
     await Request({
       method: HttpMethod.POST,
       url: `${URL.SEND_MSG_TOKEN_POST}`,
       data,
     });
+
     return "ok";
   } catch (error) {
     if (
@@ -110,22 +111,112 @@ export const sendPhoneAuthReq = async (
   }
 };
 export const sendPhoneAuthVerification = async (
-  data: string | undefined
-): Promise<unknown | AxiosResponse<DefaultErrorInterface>> => {
+  data: PhoneRequestInterface,
+  token: string | undefined
+): Promise<PhoneTokenResponseInterface | string> => {
   try {
     if (!data) return "empty";
     const res: AxiosResponse<any, any> = await Request({
       method: HttpMethod.POST,
-      url: `${URL.SEND_MSG_TOKEN_POST}/${data}/verification`,
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      url: `${URL.SEND_MSG_TOKEN_POST}/${token}/verification`,
       data,
     });
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return res.data;
   } catch (error) {
     if (error as AxiosError<DefaultErrorInterface>) {
-      return (error as AxiosError<DefaultErrorInterface>).response?.data.code;
+      return (error as AxiosError<DefaultErrorInterface>).response?.data
+        ?.code as string;
     }
 
+    return "Error";
+  }
+};
+export const sendSignUp = async (
+  data: SignUpRequestInterface
+): Promise<LoginResponseInterface | string> => {
+  try {
+    if (!data) return "empty";
+    const res: AxiosResponse<any, any> = await Request({
+      method: HttpMethod.POST,
+      url: URL.SIGN_UP,
+      data,
+    });
+    return res.data as LoginResponseInterface;
+  } catch (err) {
+    if (err as AxiosError<DefaultErrorInterface>) {
+      return (err as AxiosError<DefaultErrorInterface>).response?.data
+        ?.code as string;
+    }
+    return "Error";
+  }
+};
+export async function uploadFiles(
+  data: FormData
+): Promise<AxiosError | unknown | AxiosResponse<any>> {
+  try {
+    const res = await Request({
+      method: HttpMethod.POST,
+      url: URL.POST_UPLOAD_IMAGE_POST,
+      data,
+    });
+    return res;
+  } catch (error) {
+    if (error as AxiosError) return error;
+    return error;
+  }
+}
+export const getPosts = async (data: {
+  limit: number;
+  page: number;
+  keyword: string;
+}): Promise<AxiosResponse<PostRowResponseInterface> | AxiosError | unknown> => {
+  try {
+    const res = await Request({
+      method: HttpMethod.GET,
+      url: URL.POST_GET,
+      queryParams: data,
+    });
+
+    return res;
+  } catch (error) {
+    if (error as AxiosError) return error;
+    return error;
+  }
+};
+export const deletePosts = async (
+  data: number
+): Promise<string | AxiosError | unknown> => {
+  try {
+    await Request({
+      method: HttpMethod.DELETE,
+      url: `${URL.POST_DELETE}/${data}`,
+    });
+    return "ok";
+  } catch (error) {
+    if (error as AxiosError) {
+      if ((error as AxiosError).response?.status === 404) {
+        return (error as AxiosError<DefaultErrorInterface>).response?.data.code;
+      }
+    }
+    return error;
+  }
+};
+
+export const reWritePosts = async (
+  data: PostsDetailInterface
+): Promise<AxiosResponse<PostsRowsResponseInterface> | string | unknown> => {
+  try {
+    const res = await Request({
+      method: HttpMethod.PUT,
+      url: `${URL.POST_PUT}/${data.id}`,
+    });
+    return res;
+  } catch (error) {
+    if ((error as AxiosError).response?.status === 404) {
+      return (error as AxiosError<DefaultErrorInterface>).response?.data.code;
+    }
     return error;
   }
 };

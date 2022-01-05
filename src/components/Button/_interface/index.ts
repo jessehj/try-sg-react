@@ -6,4 +6,5 @@ export default interface ButtonProps {
   width?: string;
   margin?: string;
   onClick?: (e: React.MouseEvent) => void;
+  maxWidth?: string;
 }

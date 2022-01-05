@@ -12,9 +12,11 @@ const ButtonText = styled.div<{ btnType: string }>`
     return "bold";
   }};
   font-size: ${({ btnType }) => {
+    if (btnType.startsWith("modal")) return "14px";
     return btnType.startsWith("block") ? "16px" : "14px";
   }};
   line-height: ${({ btnType }) => {
+    if (btnType.startsWith("modal")) return "18px";
     if (btnType.startsWith("basic")) return "20px";
     return "24px";
   }};

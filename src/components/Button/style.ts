@@ -6,7 +6,14 @@ const ButtonLayout = styled.button<ButtonProps>`
 
   justify-content: center;
   align-items: center;
+  color: ${({ btnType }) => {
+    if (btnType.includes("modal_positive")) return "black";
+    return btnType.includes("negative") || btnType === "basic_icon"
+      ? "#397ef6"
+      : "#FFFFFF";
+  }};
   border: ${({ btnType }) => {
+    if (btnType.startsWith("modal")) return "1px solid #FAFAFA";
     return btnType.includes("negative") || btnType === "basic_icon"
       ? "#397ef6 1px solid"
       : "#FFFFFF 1px solid";
@@ -33,6 +40,7 @@ const ButtonLayout = styled.button<ButtonProps>`
   }};
   cursor: pointer;
   border-radius: ${({ btnType }) => {
+    if (btnType.startsWith("modal")) return "0";
     switch (btnType) {
       case "icon":
         return "50px";
@@ -42,7 +50,10 @@ const ButtonLayout = styled.button<ButtonProps>`
         return "8px";
     }
   }};
-  max-width: 320px;
+  max-width: ${({ maxWidth }) => {
+    if (maxWidth) return maxWidth;
+    return "320px";
+  }};
   flex-shrink: inherit;
   order: 1;
   flex-grow: 0;

@@ -7,4 +7,7 @@ export default interface BoardCardProps extends ThumnailImageProps {
   explain?: string;
   owner?: string;
   tags?: string[];
+  onReWrite?: () => void;
+  onDelete?: () => void;
+  onClick?: () => void;
 }

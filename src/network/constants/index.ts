@@ -51,7 +51,7 @@ export enum URL {
   LOGOUT_DELETE = "account/sessions/me",
   DUPLICATION_ID_GET = "account/id-duplication",
   SEND_MSG_TOKEN_POST = "sender/message-auth-tokens",
-
+  SIGN_UP = "account/users",
   POST_GET = "posts/",
   POST_ONE_GET = "posts/",
   POST_POST = "posts/",

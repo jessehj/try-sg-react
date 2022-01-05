@@ -21,10 +21,14 @@ const BoardCard: React.FC<BoardCardProps> = function BoardCard({
   src,
   owner,
   tags,
+  onDelete,
+  onReWrite,
+  onClick,
 }) {
   return (
-    <StyledBoardCard src={src} width={width} height={height}>
+    <StyledBoardCard src={src} width={width} height={height} onClick={onClick}>
       {src ? <ThumbnailImage src={src} /> : null}
+
       <StyleBoardContainer
         height="fit-content"
         direction="column"
@@ -48,6 +52,8 @@ const BoardCard: React.FC<BoardCardProps> = function BoardCard({
         isOwner={owner !== undefined}
         userProfileImg={exampleImage}
         userName={owner}
+        onDelete={onDelete}
+        onReWrite={onReWrite}
       />
     </StyledBoardCard>
   );

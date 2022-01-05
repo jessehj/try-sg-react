@@ -17,6 +17,7 @@ const App = function App() {
     <>
       <BrowserRouter>
         <Header />
+
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<LogIn />} />

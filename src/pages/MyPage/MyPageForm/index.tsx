@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import Form from "../../../components/Form";
 import Span from "../../../components/Span";
 import TitleSpan from "../TitleSpan";
@@ -12,12 +13,15 @@ import exampleImg from "../../../assets/image/exampleUser.svg";
 import { getUserInfo } from "../../../network/apis";
 import { LoginResponseRowInterface } from "../../../network/types";
 
-const MyPageForm: React.FC = function MyPageForm() {
-  const [name, setName] = useState("");
+import { RootState } from "../../../redux/reducers";
 
-  const [id, setId] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+const MyPageForm: React.FC = function MyPageForm() {
+  const logins = useSelector((state: RootState) => state.login);
+  const [name, setName] = useState(logins.row.name);
+
+  const [id, setId] = useState(logins.row.id);
+  const [phone, setPhone] = useState(logins.row.phone);
+  const [email, setEmail] = useState(logins.row.email);
   const [isChange, setChange] = useState(false);
   const pwdRef = useRef<HTMLInputElement>(null);
   const changedPwdRef = useRef<HTMLInputElement>(null);

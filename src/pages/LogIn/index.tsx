@@ -16,7 +16,7 @@ const Props: FlexContainerProps = {
 const LogIn: React.FC = function LogIn() {
   const logins = useSelector((state: RootState) => state.login);
   const nav = useNavigate();
-  console.log(logins);
+
   useEffect(function () {
     if (axios.defaults.headers.common["x-auth-token"] === null) nav("/board");
     if (logins.row && logins.row?.name !== "noUser") {

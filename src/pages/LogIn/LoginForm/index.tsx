@@ -12,6 +12,7 @@ import { handleClick } from "../../../handlers";
 import { LinkToSignup } from "../../../nav";
 
 import { sendLoginAction } from "../../../redux/actions";
+import { LoginRequestInterface } from "../../../network/types";
 
 const FormProp: FormProps = {
   width: "320px",
@@ -22,21 +23,16 @@ const LoginForm: React.FC = function LoginForm() {
   const dispatch = useDispatch();
   const IdRef = useRef<HTMLInputElement>(null);
   const PwdRef = useRef<HTMLInputElement>(null);
-  const handleNavToSignUp = (e: React.MouseEvent) => {
+  const handlePressButtonNavToSignUp = (e: React.MouseEvent) => {
     handleClick(e, () => LinkToSignup(nav));
   };
-  const handleLogin = (
-    accountId: string | undefined,
-    password: string | undefined
-  ) => {
-    console.log(IdRef.current?.value, PwdRef.current?.value);
-    try {
-      dispatch(
-        sendLoginAction.request(JSON.stringify({ accountId, password }))
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  const handlePressButtonLogin = (accountId: string, password: string) => {
+    const data: LoginRequestInterface = {
+      accountId,
+      password,
+    };
+
+    return dispatch(sendLoginAction.request(data));
   };
 
   return (
@@ -59,7 +55,10 @@ const LoginForm: React.FC = function LoginForm() {
           width="100%"
           onClick={(e) =>
             handleClick(e, () =>
-              handleLogin(IdRef.current?.value, PwdRef.current?.value)
+              handlePressButtonLogin(
+                IdRef.current?.value as string,
+                PwdRef.current?.value as string
+              )
             )
           }
         >
@@ -69,7 +68,11 @@ const LoginForm: React.FC = function LoginForm() {
           texts={[
             { text: "아이디 찾기" },
             { text: "비밀번호 찾기" },
-            { text: "회원가입", color: "#397EF6", onClick: handleNavToSignUp },
+            {
+              text: "회원가입",
+              color: "#397EF6",
+              onClick: handlePressButtonNavToSignUp,
+            },
           ]}
           suffix=" | "
         />

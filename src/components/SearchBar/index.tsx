@@ -14,7 +14,7 @@ const SearchBar: React.FC<InputProps> = function SearchBar({
   children,
 }) {
   return (
-    <InputLayout>
+    <StyledInputLayout>
       <StyledSearchBar
         inputName={inputName}
         placeholder={placeholder}
@@ -26,7 +26,7 @@ const SearchBar: React.FC<InputProps> = function SearchBar({
       <IconButtonWrap>
         <IconButton src={SearchIcon} width="24px" height="24px" />
       </IconButtonWrap>
-    </InputLayout>
+    </StyledInputLayout>
   );
 };
 
@@ -47,4 +47,10 @@ const IconButtonWrap = styled.div`
   position: absolute;
   right: -25px;
   top: 13px;
+`;
+const StyledInputLayout = styled(InputLayout)`
+  margin: 96px 0 96px 0;
+  ${MediaQueries(FROM_TABLET_TO_PHONE)} {
+    margin: 96px 0 32px 0;
+  }
 `;

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Span from "../../../components/Span";
-import Button from "../../../components/Button";
+
 import FlexContainer from "../../../style/FlexContainer";
 import FlexItem from "../../../style/FlexItem";
 import { LinkToLogin } from "../../../nav";
@@ -10,6 +10,7 @@ import {
   FROM_TABLET_TO_PHONE,
   MediaQueries,
 } from "../../../style/MediaQueries";
+import Button from "../../../components/Button";
 
 const WelcomeSection: React.FC = function WelcomeSection() {
   const nav = useNavigate();
@@ -20,11 +21,12 @@ const WelcomeSection: React.FC = function WelcomeSection() {
   return (
     <FlexContainer direction="column" width="50%" alignItems="center">
       <StyledWelcomeContainer
-        width="355px"
+        width="100%"
         direction="row"
         alignItems="space-between"
-        justifyContent="center"
+        justifyContent="flex-start"
         height="100vh"
+        margin="0 20px 0 20px"
       >
         <FlexItem>
           <FlexContainer margin="30px 0 0 0 ">
@@ -52,8 +54,9 @@ const WelcomeSection: React.FC = function WelcomeSection() {
         <Button
           btnType="block_positive"
           width="100%"
-          margin="40px 0px"
+          margin="40px 0 40px 0"
           onClick={handleNavToLogin}
+          maxWidth="100%%"
         >
           로그인
         </Button>
@@ -65,7 +68,9 @@ export default WelcomeSection;
 
 const StyledWelcomeContainer = styled(FlexContainer)`
   height: fit-content;
+  max-width: 355px;
   ${MediaQueries(FROM_TABLET_TO_PHONE)} {
     height: 100vh;
+    max-width: 90%;
   }
 `;

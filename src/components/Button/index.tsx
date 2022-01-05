@@ -9,6 +9,7 @@ const Button: React.FC<ButtonProps> = function Button({
   margin,
   onClick,
   children,
+  maxWidth,
 }: ButtonProps) {
   return (
     <ButtonLayout
@@ -16,6 +17,7 @@ const Button: React.FC<ButtonProps> = function Button({
       width={width}
       btnType={btnType}
       onClick={onClick}
+      maxWidth={maxWidth}
       type="button"
     >
       <Text btnType={btnType}>{children}</Text>

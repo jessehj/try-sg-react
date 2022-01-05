@@ -9,6 +9,7 @@ import {
   checkDuplicate,
   sendPhoneAuthReq,
   sendPhoneAuthVerification,
+  sendSignUp,
 } from "../../../network/apis";
 import { ErrorCode } from "../../../network/constants";
 import { LinkToLogin } from "../../../nav";
@@ -21,6 +22,12 @@ import Span from "../../../components/Span";
 import TextButton from "../../../components/TextButton";
 import FlexContainer from "../../../style/FlexContainer";
 import FlexItem from "../../../style/FlexItem";
+import {
+  LoginResponseInterface,
+  PhoneRequestInterface,
+  PhoneTokenResponseInterface,
+  SignUpRequestInterface,
+} from "../../../network/types";
 
 const FormProp: FormProps = {
   width: "320px",
@@ -38,6 +45,7 @@ const SignUpForm: React.FC = function SignUpForm() {
   const [rePwdMsg, setRePwdMsg] = useState("");
   const [emailMsg, setEmailMsg] = useState("");
   const [phoneMsg, setPhoneMsg] = useState("");
+
   const [isIdCheck, setIdCheck] = useState(false);
   const [isPwdCheck, setPwdCheck] = useState(false);
   const [isEmailCheck, setEmailCheck] = useState(false);
@@ -57,49 +65,24 @@ const SignUpForm: React.FC = function SignUpForm() {
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const phoneTokenRef = useRef<HTMLInputElement>(null);
+  const certRef = useRef("");
   useEffect(() => {
     checkAll();
   }, [isIdCheck]);
 
-  const handleSendPhoneAuthRequest = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    setComplete(false);
-    const res = await sendPhoneAuthReq(phoneRef.current?.value);
-    if (res === "empty") {
-      return setPhoneMsg("핸드폰 번호를 입력하세요.");
-    }
-    if (res === ErrorCode.INVALID_PHONE) {
-      return setPhoneMsg("핸드폰 번호를 확인해주세요.");
-    }
-    return setConfirm(true);
-  };
-  const handleSendPhoneAuthVerification = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    const res = await sendPhoneAuthVerification(phoneTokenRef.current?.value);
-    if (res === "empty") {
-      return setPhoneMsg("일련번호를 입력해주세요.");
-    }
-    if (res === ErrorCode.INVALID_PHONE_AUTH_CODE) {
-      return setPhoneMsg("잘못된 인증코드입니다.");
-    }
-    setConfirm(false);
-    setCheck(false);
-    setPhoneMsg("");
-    return setComplete(true);
-  };
-  const handleNavToLogin = (e: React.MouseEvent) => {
+  const handlePressButtonNavToLogin = (e: React.MouseEvent) => {
     handleClick(e, () => LinkToLogin(nav));
   };
-  const handleConfirmPwd = (e: React.ChangeEvent) => {
+  const handleChangeInputConfirmPwd = (e: React.ChangeEvent) => {
     handleChange(e, () => debounceFunction(checkPwdAndRePwd(), 200));
   };
-  const handleValidatePwd = (e: React.ChangeEvent) => {
+  const handleChangeInputValidatePwd = (e: React.ChangeEvent) => {
     handleChange(e, () => debounceFunction(validatePwd(), 200));
   };
-  const handleValidateEmail = (e: React.ChangeEvent) => {
+  const handleChangeInputValidateEmail = (e: React.ChangeEvent) => {
     handleChange(e, () => debounceFunction(validateMail(), 200));
   };
-  const handleCheckDuplicate = async (e: React.MouseEvent) => {
+  const handlePressButtonCheckDuplicate = async (e: React.MouseEvent) => {
     e.preventDefault();
     checkAll();
     const res = await checkDuplicate(idRef.current?.value);
@@ -109,13 +92,77 @@ const SignUpForm: React.FC = function SignUpForm() {
 
       return setIdMsg("가능한 아이디 입니다.");
     }
-    if (res === "no")
+    if (res === "duplicate")
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       return setIdMsg(`${idRef.current?.value} : 아이디가 이미 존재합니다.`);
     if (res === "empty") return setIdMsg("입력 값이 없습니다.");
     return setIdMsg("없습니다.");
   };
+  const handlePressButtonSendPhoneAuthRequest = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    setComplete(false);
+    const data: PhoneRequestInterface = {
+      phone: phoneRef.current?.value,
+    };
+    try {
+      const res = await sendPhoneAuthReq(data);
+      setPhoneMsg("");
+      if (res === "empty") {
+        return setPhoneMsg("핸드폰 번호를 입력하세요.");
+      }
+      if (res === ErrorCode.INVALID_PHONE) {
+        return setPhoneMsg("핸드폰 번호를 확인해주세요.");
+      }
+      if (res !== "ok")
+        return setPhoneMsg("오류가 생겼습니다. 인터넷 연결을 확인해주세요.");
+      return setConfirm(true);
+    } catch (err) {
+      return setConfirm(false);
+    }
+  };
+  const handlePressButtonSendPhoneAuthVerification = async (
+    e: React.MouseEvent
+  ) => {
+    e.preventDefault();
+    const data: PhoneRequestInterface = {
+      phone: phoneRef.current?.value,
+    };
 
+    const res = await sendPhoneAuthVerification(
+      data,
+      phoneTokenRef.current?.value
+    );
+    if (res === "empty") {
+      return setPhoneMsg("일련번호를 입력해주세요.");
+    }
+    if (res === ErrorCode.INVALID_PHONE_AUTH_CODE) {
+      return setPhoneMsg("잘못된 인증코드입니다.");
+    }
+    certRef.current = (res as PhoneTokenResponseInterface).row.cert;
+    setConfirm(false);
+    setCheck(false);
+    setPhoneMsg("");
+    return setComplete(true);
+  };
+  const handlePressButtonSendSignUp = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    const data: SignUpRequestInterface = {
+      accountId: idRef.current?.value as string,
+      name: nameRef.current?.value as string,
+      email: emailRef.current?.value as string,
+      phone: phoneRef.current?.value as string,
+      password: pwdRef.current?.value as string,
+      cert: certRef.current,
+    };
+    try {
+      const res = await sendSignUp(data);
+      if (!(res as LoginResponseInterface).row) return "error";
+      return nav("/");
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
   const checkPwdAndRePwd = function checkPwd() {
     setComplete(false);
     setConfirm(false);
@@ -222,7 +269,7 @@ const SignUpForm: React.FC = function SignUpForm() {
             width="99px"
             margin="0 0 0 8px"
             btnType="block_positive"
-            onClick={handleCheckDuplicate}
+            onClick={handlePressButtonCheckDuplicate}
           >
             중복확인
           </Button>
@@ -245,7 +292,7 @@ const SignUpForm: React.FC = function SignUpForm() {
           type="password"
           height="56px"
           ref={pwdRef}
-          onChange={handleValidatePwd}
+          onChange={handleChangeInputValidatePwd}
         />
         <Span
           color="#BABABA"
@@ -263,7 +310,7 @@ const SignUpForm: React.FC = function SignUpForm() {
           type="password"
           height="56px"
           ref={rePwdRef}
-          onChange={handleConfirmPwd}
+          onChange={handleChangeInputConfirmPwd}
           message={pwdMsg}
         />
         {rePwdMsg ? (
@@ -292,7 +339,7 @@ const SignUpForm: React.FC = function SignUpForm() {
           placeholder="이메일"
           ref={emailRef}
           height="56px"
-          onChange={handleValidateEmail}
+          onChange={handleChangeInputValidateEmail}
           message={emailMsg}
         />
 
@@ -317,7 +364,7 @@ const SignUpForm: React.FC = function SignUpForm() {
               width="132px"
               margin="0 0 0 8px"
               btnType="block_positive"
-              onClick={handleSendPhoneAuthVerification}
+              onClick={handlePressButtonSendPhoneAuthVerification}
             >
               인증번호 확인
             </Button>
@@ -326,7 +373,9 @@ const SignUpForm: React.FC = function SignUpForm() {
               width="132px"
               margin="0 0 0 8px"
               btnType={isCheck ? "block_positive" : "block-positive_disabled"}
-              onClick={isCheck ? handleSendPhoneAuthRequest : () => null}
+              onClick={
+                isCheck ? handlePressButtonSendPhoneAuthRequest : () => null
+              }
             >
               인증번호 받기
             </Button>
@@ -355,7 +404,12 @@ const SignUpForm: React.FC = function SignUpForm() {
           />
         ) : null}
         {isComplete === true ? (
-          <Button width="100%" margin="24px 0 0 0" btnType="block_positive">
+          <Button
+            width="100%"
+            margin="24px 0 0 0"
+            btnType="block_positive"
+            onClick={handlePressButtonSendSignUp}
+          >
             가입하기
           </Button>
         ) : (
@@ -373,7 +427,7 @@ const SignUpForm: React.FC = function SignUpForm() {
             {
               text: "Log In",
               color: "#397EF6",
-              onClick: handleNavToLogin,
+              onClick: handlePressButtonNavToLogin,
             },
           ]}
           suffix="? "

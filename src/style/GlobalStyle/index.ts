@@ -18,5 +18,11 @@ const globalStyles = createGlobalStyle`
      .quill{
        height:100%;
      }
+     em{
+       font-style:italic;
+     }
+     strong{
+       font-weight:bolder
+     }
  `;
 export default globalStyles;

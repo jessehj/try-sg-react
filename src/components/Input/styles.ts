@@ -41,14 +41,6 @@ const StyledInput = styled.input<InputProps>`
 
   /* gray/gray2 */
   color: #222222;
-  background-image: ${({ inputName }) => {
-    if (inputName === "Id") return `url(${IdIcon})`;
-    if (inputName?.startsWith("Pwd")) return `url(${PwdIcon})`;
-    return "none";
-  }};
-  background-repeat: no-repeat;
-  background-position: right;
-  /* Inside Auto Layout */
 
   order: 0;
 
@@ -74,6 +66,7 @@ const StyledInput = styled.input<InputProps>`
       return "none";
     }};
     background-repeat: no-repeat;
+    background-size: contain;
     background-position: right;
     /* Inside Auto Layout */
 

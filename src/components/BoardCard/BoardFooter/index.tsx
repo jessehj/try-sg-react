@@ -18,6 +18,8 @@ const BoardFooter: React.FC<BoardFooterProps> = function BoardFooter({
   isOwner,
   userProfileImg,
   userName,
+  onDelete,
+  onReWrite,
 }) {
   return isOwner === true ? (
     <StyledBoardFooter>
@@ -63,10 +65,14 @@ const BoardFooter: React.FC<BoardFooterProps> = function BoardFooter({
             justifyContent="flex-end"
           >
             <FlexItem flexBasis="50px">
-              <IconButton margin="13px 0px" src={RewriteIcon} />
+              <IconButton
+                margin="13px 0px"
+                src={RewriteIcon}
+                onClick={onReWrite}
+              />
             </FlexItem>
             <FlexItem flexBasis="50px">
-              <IconButton src={DeleteIcon} />
+              <IconButton src={DeleteIcon} onClick={onDelete} />
             </FlexItem>
           </StyledCardFooter>
         </FlexItem>

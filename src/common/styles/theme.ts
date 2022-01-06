@@ -2,7 +2,7 @@ const getTypo = (
   bold: "bold" | "medium" | "regular",
   size: number,
   lineHeight = "1.5"
-) => {
+): string => {
   let fontWeight;
   switch (bold) {
     case "bold":
@@ -41,11 +41,11 @@ const theme = {
     display: "flex",
     alignItems: "center",
     height: "80px",
+    boxShadow: "0px 0px 32px rgba(0, 0, 0, 0.06);",
     colors: {
       background: "white",
-      boxShadow: "0px 0px 32px rgba(0, 0, 0, 0.06);",
-      select: "#222",
-      unSelect: "#397EF6",
+      unSelect: "#222",
+      select: "#397EF6",
     },
   },
   shadow: {
@@ -67,7 +67,7 @@ const theme = {
       success: "#397EF6",
       placeholder: "#BABABA",
     },
-    padding: "16px 20px",
+    padding: "0 20px",
     height: "56px",
   },
   button: {

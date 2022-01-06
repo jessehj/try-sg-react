@@ -26,13 +26,18 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "off",
     "react/function-component-definition": [
       2,
       {
         namedComponents: "arrow-function",
         unnamedComponents: "arrow-function",
       },
-    ],
+    ], // function(){} -> () => {} 변경해주는 lint
+    "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
   },
   settings: {

@@ -151,6 +151,9 @@ const theme = {
     medium: "500",
     bold: "700",
   },
+  device: {
+    tablet: `@media screen and (max-width: 768px)`,
+  },
 };
 
 export default theme;

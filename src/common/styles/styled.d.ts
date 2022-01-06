@@ -1,4 +1,4 @@
-import "styled-components";
+import { CSSProp } from "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
@@ -133,6 +133,9 @@ declare module "styled-components" {
       button12: string;
       serifHead48: string;
       serifHead20: string;
+    };
+    device: {
+      tablet: CSSProp;
     };
   }
 }

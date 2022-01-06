@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import LoginLogo from "../../assets/svgs/login-logo.svg";
 import commonStrings from "../../constants/strings";
-import { LoginForm, LoginWrapper } from "./style";
+import { SignUpForm, SignUpWrapper } from "./style";
 import FormInput from "../../components/shared/FormInput";
 import FormInputBtn from "../../components/shared/FormInputBtn";
 import { IValidateType, validation } from "../../components/utils";
 import { IInitialValue } from "./type";
+import LoginLogo from "../../components/shared/LoginLogo";
 
 const initialValues: IInitialValue = {
   id: "",
@@ -22,6 +22,7 @@ const SignUpPage: React.FC = () => {
   /**
    * State
    */
+
   const [notice, setNotice] = useState<{ [type: string]: string | undefined }>({
     id: undefined,
     pwd: undefined,
@@ -145,13 +146,11 @@ const SignUpPage: React.FC = () => {
    * Render Helpers
    */
   return (
-    <LoginWrapper>
-      <div className="login__wrap">
-        <img src={LoginLogo} alt="LoginImage" className="login__wrap--img" />
-      </div>
-      <LoginForm.Wrapper>
-        <LoginForm.Form onSubmit={formik.handleSubmit}>
-          <LoginForm.Title>{commonStrings.TITLE_SIGNUP}</LoginForm.Title>
+    <SignUpWrapper>
+      <LoginLogo type="signUp" />
+      <SignUpForm.Wrapper>
+        <SignUpForm.Form onSubmit={formik.handleSubmit}>
+          <SignUpForm.Title>{commonStrings.TITLE_SIGNUP}</SignUpForm.Title>
           <FormInputBtn
             type="text"
             valueId="id"
@@ -170,7 +169,7 @@ const SignUpPage: React.FC = () => {
             value={formik.values.pwd}
             onChange={formik.handleChange}
             message={commonStrings.INPUT_PWD_ERROR_NOTICE}
-            error={error?.pwd}
+            isError={error?.pwd}
             validateCheck={handleValidate}
           />
           <FormInput
@@ -180,10 +179,9 @@ const SignUpPage: React.FC = () => {
             value={formik.values.pwdReCheck}
             onChange={formik.handleChange}
             message={notice?.pwdReCheck}
-            error={error?.pwdReCheck}
+            isError={error?.pwdReCheck}
             validateCheck={handleValidate}
           />
-
           <FormInput
             type="text"
             valueId="name"
@@ -191,7 +189,7 @@ const SignUpPage: React.FC = () => {
             value={formik.values.name}
             onChange={formik.handleChange}
             message={notice?.name}
-            error={error?.name}
+            isError={error?.name}
             validateCheck={handleValidate}
           />
           <FormInput
@@ -201,7 +199,7 @@ const SignUpPage: React.FC = () => {
             value={formik.values.email}
             onChange={formik.handleChange}
             message={notice?.email}
-            error={error?.email}
+            isError={error?.email}
             validateCheck={handleValidate}
           />
           <FormInputBtn
@@ -223,13 +221,13 @@ const SignUpPage: React.FC = () => {
               value={formik.values.certificationCode}
               onChange={formik.handleChange}
               message={notice?.certificationCode}
-              error={error?.certificationCode}
+              isError={error?.certificationCode}
               validateCheck={handleValidate}
             >
               {/* {min}:{sec} */}
             </FormInput>
           )}
-          <LoginForm.LoginBtn
+          <SignUpForm.LoginBtn
             type="submit"
             disabled={
               !formik.values.id ||
@@ -240,10 +238,16 @@ const SignUpPage: React.FC = () => {
             }
           >
             가입하기
-          </LoginForm.LoginBtn>
-        </LoginForm.Form>
-      </LoginForm.Wrapper>
-    </LoginWrapper>
+          </SignUpForm.LoginBtn>
+        </SignUpForm.Form>
+        <SignUpForm.BackToLogin>
+          이미 계정이 있으신가요?
+          <SignUpForm.BackToLoginLink to="/login">
+            Log In
+          </SignUpForm.BackToLoginLink>
+        </SignUpForm.BackToLogin>
+      </SignUpForm.Wrapper>
+    </SignUpWrapper>
   );
 };
 

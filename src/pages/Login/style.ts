@@ -5,29 +5,31 @@ export const LoginWrapper = styled.main`
   ${({ theme }) => css`
     display: flex;
 
-    .login__wrap {
-      width: 50%;
-      height: calc(100vh - 80px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    ${theme.device.tablet} {
+      width: 100%;
+      display: block;
       background-color: ${theme.common.colors.background};
-
-      &--img {
-        width: 50%;
-      }
+      height: 100vh;
+      margin: auto;
     }
   `}
 `;
 
 export const LoginForm = {
   Wrapper: styled.div`
-    width: 50%;
-    height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    ${({ theme }) => css`
+      width: 50%;
+      height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      ${theme.device.tablet} {
+        width: 100%;
+        height: 268px;
+      }
+    `}
   `,
   Form: styled.form`
     width: 316px;

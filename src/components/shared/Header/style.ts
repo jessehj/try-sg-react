@@ -22,7 +22,9 @@ export const HeaderList = styled.div`
         border: 1px solid black;
       }
     }
-  }
+    ${theme.device.tablet} {
+      display: none;
+    }
   `};
 `;
 

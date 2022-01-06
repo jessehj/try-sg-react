@@ -4,8 +4,8 @@ import {
   InputBtnWrapper,
   InputStyle,
   InputImgWrapper,
-  InputNotice,
 } from "./style";
+import Notice from "../Notice";
 
 interface IInputType {
   type: string;
@@ -58,7 +58,7 @@ const FormInputBtn = ({
           {btnValue}
         </BtnStyle>
       </InputBtnWrapper>
-      {message && <InputNotice error={error}>{message}</InputNotice>}
+      {message && <Notice isError={error} message={message} />}
     </>
   );
 };

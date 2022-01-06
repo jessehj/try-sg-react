@@ -1,4 +1,5 @@
 import styled, { css, DefaultTheme } from "styled-components";
+import Input from "../Input";
 
 interface ILoginType {
   theme: DefaultTheme;
@@ -6,16 +7,11 @@ interface ILoginType {
   error?: boolean;
 }
 
-export const InputInnerWrapper = styled.input`
-  ${({ theme, error }: ILoginType) => css`
+export const InputInnerWrapper = styled(Input)`
+  ${({ theme }: ILoginType) => css`
     width: 100%;
-    height: 100%;
     padding: ${theme.input.padding};
     padding-right: 50px !important;
-    border: 2px solid
-      ${error ? theme.input.colors.borderError : theme.input.colors.border};
-    border-radius: 8px;
-    box-sizing: border-box;
 
     &::placeholder {
       color: ${theme.common.colors.gray2};
@@ -30,8 +26,6 @@ export const InputInnerWrapper = styled.input`
       -webkit-appearance: none;
       margin: 0;
     }
-
-    ${theme.typo.body16B}
   `}
 `;
 

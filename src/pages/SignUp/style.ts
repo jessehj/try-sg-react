@@ -1,33 +1,35 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-export const LoginWrapper = styled.main`
+export const SignUpWrapper = styled.main`
   ${({ theme }) => css`
     display: flex;
 
-    .login__wrap {
-      width: 50%;
-      height: calc(100vh - 80px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    ${theme.device.tablet} {
+      display: block;
+      width: 100%;
+      height: 100vh;
       background-color: ${theme.common.colors.background};
-
-      &--img {
-        width: 50%;
-      }
+      margin: auto;
     }
   `}
 `;
 
-export const LoginForm = {
+export const SignUpForm = {
   Wrapper: styled.div`
-    width: 50%;
-    height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    ${({ theme }) => css`
+      width: 50%;
+      height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      ${theme.device.tablet} {
+        width: 100%;
+        height: 769px;
+      }
+    `}
   `,
   Form: styled.form`
     width: 316px;
@@ -74,6 +76,20 @@ export const LoginForm = {
       }
 
       ${theme.typo.body14B}
+    `}
+  `,
+  BackToLogin: styled.div`
+    ${({ theme }) => css`
+      margin-top: 24px;
+      color: ${theme.common.colors.gray2};
+      ${theme.typo.body14B};
+    `}
+  `,
+  BackToLoginLink: styled(Link)`
+    ${({ theme }) => css`
+      margin-left: 5px;
+      color: ${theme.common.colors.primary};
+      text-decoration: none;
     `}
   `,
 };

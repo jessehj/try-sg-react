@@ -1,11 +1,11 @@
 import React from "react";
 import { useFormik } from "formik";
-import LoginLogo from "../../assets/svgs/login-logo.svg";
 import LoginId from "../../assets/svgs/input_profile.svg";
 import LoginPwd from "../../assets/svgs/input_pwd.svg";
 import commonStrings from "../../constants/strings";
 import { LoginForm, LoginWrapper } from "./style";
 import FormInput from "../../components/shared/FormInput";
+import LoginLogo from "../../components/shared/LoginLogo";
 
 const LoginPage: React.FC = () => {
   /**
@@ -36,9 +36,7 @@ const LoginPage: React.FC = () => {
    */
   return (
     <LoginWrapper>
-      <div className="login__wrap">
-        <img src={LoginLogo} alt="LoginImage" className="login__wrap--img" />
-      </div>
+      <LoginLogo type="login" />
       <LoginForm.Wrapper>
         <LoginForm.Form onSubmit={formik.handleSubmit}>
           <LoginForm.Title>{commonStrings.TITLE_LOGIN}</LoginForm.Title>

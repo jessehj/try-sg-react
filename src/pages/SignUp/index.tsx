@@ -43,34 +43,19 @@ const SignUpPage: React.FC = () => {
   });
   const [isCertification, setIsCertification] = useState<boolean>(false);
 
-  // const [min, setMin] = useState(3);
-  // const [sec, setSec] = useState(0);
-  // const time = useRef(180);
-  // const timerId = useRef(null);
-  //
-  // useEffect(() => {
-  //   timerId.current = setInterval(() => {
-  //     setMin(parseInt(time.current / 60));
-  //     setSec(time.current % 60);
-  //     time.current -= 1;
-  //   }, 1000);
-  //
-  //   return () => clearInterval(timerId.current);
-  // }, []);
-  //
-  // useEffect(() => {
-  //   // 만약 타임 아웃이 발생했을 경우
-  //   if (time.current <= 0) {
-  //     console.log("타임 아웃");
-  //     clearInterval(timerId.current);
-  //     // dispatch event
-  //   }
-  // }, [sec]);
+  let timer = 180;
+  let min = 0;
+  let sec = 0;
+  const [time, setTime] = useState<string>();
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+
   /**
    * Private Functions
    */
   const onSubmit = async () => {
-    alert("로그인");
+    console.log("error", error);
+    // TODO: 여기서 에러 있을 때 회원가입 통과 막아야함
+    alert("회원가입 완료");
   };
 
   const handleValidate = ({ value, type }: IValidateType) => {
@@ -92,6 +77,17 @@ const SignUpPage: React.FC = () => {
     setNotice((current) => ({ ...current, [type]: validateResult.notice }));
   };
 
+  // const handlePwdRecheck = ({ value }: { value: string }) => {
+  //   /**
+  //    * 문제점
+  //    * 1. password가 변경될 시 pwdReCheck에서도 에러값 변경
+  //    * 2. 빈 Password 값 일 때 PwdReCheck에서는 check할 필요없음
+  //    */
+  //   if (formik.values.pwd) {
+  //     // 이때만 validate 체크
+  //   }
+  // };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -100,15 +96,50 @@ const SignUpPage: React.FC = () => {
   /**
    * Event Actions
    */
+  let intervalTimer: NodeJS.Timer;
+  const handleStartTimer = () => {
+    intervalTimer = setInterval(() => {
+      timer -= 1;
+      min = parseInt(String(timer / 60), 10);
+      sec = parseInt(String(timer % 60), 10);
+
+      if (timer <= 0) {
+        clearInterval(intervalTimer);
+        setIsRunning(false);
+      }
+      const timeChange = () => {
+        const minute = min < 10 ? `0${min}` : min;
+        const second = sec < 10 ? `0${sec}` : sec;
+
+        return `${minute} : ${second}`;
+      };
+      setTime(timeChange());
+    }, 1000);
+  };
+
+  const handleTimer = () => {
+    if (isRunning) {
+      // TODO: error 이부분 수정 필요 clear interval이 작동하지 않음
+      clearInterval(intervalTimer);
+    } else {
+      handleStartTimer();
+    }
+    setIsRunning(true);
+  };
+
   const handleBtnError = (
     type: "id" | "phone",
     error: boolean,
     notice?: string
   ) => {
     if (!error) {
-      setIsCertification(true);
       setError((current) => ({ ...current, [type]: error }));
       setNotice((current) => ({ ...current, [type]: notice }));
+      if (type === "phone") {
+        setIsCertification(true);
+        // 통과시에 Timer 작동 핸들러
+        handleTimer();
+      }
     } else {
       setError((current) => ({ ...current, [type]: error }));
       setNotice((current) => ({ ...current, [type]: notice }));
@@ -135,13 +166,6 @@ const SignUpPage: React.FC = () => {
     }
   };
 
-  // const timeFormat = (time: number) => {
-  //   const m = Math.floor(time / 60).toString();
-  //   let s = (time % 60).toString();
-  //   if (s.length === 1) s = `0${s}`;
-  //   return `${m}:${s}`;
-  // };
-
   /**
    * Render Helpers
    */
@@ -160,7 +184,7 @@ const SignUpPage: React.FC = () => {
             btnValue="중복확인"
             message={notice?.id}
             onClick={(value) => checkId(value)}
-            error={error?.id}
+            isError={error?.id}
           />
           <FormInput
             type="password"
@@ -211,7 +235,7 @@ const SignUpPage: React.FC = () => {
             btnValue="인증번호 받기"
             message={notice?.phone}
             onClick={(value) => getValidateCode(value)}
-            error={error?.phone}
+            isError={error?.phone}
           />
           {isCertification && (
             <FormInput
@@ -224,7 +248,7 @@ const SignUpPage: React.FC = () => {
               isError={error?.certificationCode}
               validateCheck={handleValidate}
             >
-              {/* {min}:{sec} */}
+              <SignUpForm.Timer>{time}</SignUpForm.Timer>
             </FormInput>
           )}
           <SignUpForm.LoginBtn

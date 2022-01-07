@@ -92,4 +92,16 @@ export const SignUpForm = {
       text-decoration: none;
     `}
   `,
+  Timer: styled.div`
+    ${({ theme }) => css`
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: ${theme.common.colors.error};
+      box-sizing: border-box;
+
+      ${theme.typo.body16B}
+    `}
+  `,
 };

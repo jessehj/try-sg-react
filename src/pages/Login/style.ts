@@ -1,5 +1,12 @@
-import styled, { css } from "styled-components";
+import styled, { css, DefaultTheme } from "styled-components";
 import { Link } from "react-router-dom";
+import Button from "../../components/shared/Button";
+
+interface IInputType {
+  theme: DefaultTheme;
+  value?: string;
+  error?: boolean;
+}
 
 export const LoginWrapper = styled.main`
   ${({ theme }) => css`
@@ -40,19 +47,11 @@ export const LoginForm = {
       ${theme.typo.head24}
     `}
   `,
-  LoginBtn: styled.button`
-    ${({ theme, disabled }) => css`
+  LoginBtn: styled(Button)`
+    ${({ theme }) => css`
       width: 100%;
       height: ${theme.button.heights.extraLarge};
-      border: none;
-      border-radius: 8px;
-      color: ${theme.button.colors.textPrimary};
-      background-color: ${disabled
-        ? theme.button.colors.bgDisabled
-        : theme.button.colors.bgPrimary};
       margin-bottom: 12px;
-
-      ${theme.typo.body16B}
     `}
   `,
   FindBtn: styled(Link)`
@@ -76,6 +75,24 @@ export const LoginForm = {
       }
 
       ${theme.typo.body14B}
+    `}
+  `,
+  ImageContainer: styled.img`
+    ${({ value, error }: IInputType) => css`
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      filter: ${value
+        ? "invert(40%) sepia(69%) saturate(793%) hue-rotate(183deg) brightness(103%) contrast(97%)"
+        : error &&
+          "invert(75%) sepia(82%) saturate(4967%) hue-rotate(323deg) brightness(103%) contrast(119%)"};
+
+      & > input:focus ~ img {
+        filter: invert(40%) sepia(69%) saturate(793%) hue-rotate(183deg)
+          brightness(103%) contrast(97%);
+      }
     `}
   `,
 };

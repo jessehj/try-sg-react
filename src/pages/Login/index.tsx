@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import LoginId from "../../assets/svgs/input_profile.svg";
 import LoginPwd from "../../assets/svgs/input_pwd.svg";
@@ -6,11 +6,20 @@ import commonStrings from "../../constants/strings";
 import { LoginForm, LoginWrapper } from "./style";
 import FormInput from "../../components/shared/FormInput";
 import LoginLogo from "../../components/shared/LoginLogo";
+import { IValidateType, validation } from "../../components/utils";
 
 const LoginPage: React.FC = () => {
   /**
    * State
    */
+  const [error, setError] = useState<{ id: boolean; pwd: boolean }>({
+    id: false,
+    pwd: false,
+  });
+  const [errorNotice, setErrorNotice] = useState<{ id: string; pwd: string }>({
+    id: "",
+    pwd: "",
+  });
 
   /**
    * Private Functions
@@ -30,6 +39,18 @@ const LoginPage: React.FC = () => {
   /**
    * Event Actions
    */
+  const handleValidate = ({ value, type }: IValidateType) => {
+    const validateResult: {
+      error: boolean;
+      notice?: string;
+    } = validation({ value, type });
+
+    setError((current) => ({ ...current, [type]: validateResult.error }));
+    setErrorNotice((current) => ({
+      ...current,
+      [type]: validateResult.notice,
+    }));
+  };
 
   /**
    * Render Helpers
@@ -46,8 +67,11 @@ const LoginPage: React.FC = () => {
             placeholder={commonStrings.INPUT_ID}
             value={formik.values.id}
             onChange={formik.handleChange}
+            message={errorNotice?.id}
+            isError={error?.id}
+            validateCheck={handleValidate}
           >
-            <img src={LoginId} alt="로그인 id 아이콘" />
+            <LoginForm.ImageContainer src={LoginId} alt="로그인 id 아이콘" />
           </FormInput>
           <FormInput
             type="password"
@@ -55,8 +79,14 @@ const LoginPage: React.FC = () => {
             placeholder={commonStrings.INPUT_PWD}
             value={formik.values.pwd}
             onChange={formik.handleChange}
+            message={errorNotice?.pwd}
+            isError={error?.pwd}
+            validateCheck={handleValidate}
           >
-            <img src={LoginPwd} alt="로그인 password 아이콘" />
+            <LoginForm.ImageContainer
+              src={LoginPwd}
+              alt="로그인 password 아이콘"
+            />
           </FormInput>
           <LoginForm.LoginBtn
             type="submit"

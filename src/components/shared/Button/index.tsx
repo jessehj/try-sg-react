@@ -1,6 +1,22 @@
 import React from "react";
+import ButtonWrapper from "./style";
 
-const Button: React.FC = () => {
+interface IBtnType {
+  type?: "button" | "submit" | "reset" | undefined;
+  styleType?: string;
+  children: any;
+  disabled?: boolean;
+  style?: any;
+  onClick?: () => void;
+}
+
+const Button = ({
+  type = "button",
+  styleType,
+  disabled = false,
+  children,
+  ...rest
+}: IBtnType) => {
   /**
    * State
    */
@@ -15,8 +31,11 @@ const Button: React.FC = () => {
   /**
    * Render Helpers
    */
-  return <div />;
+  return (
+    <ButtonWrapper type={type} disabled={disabled} {...rest}>
+      {children}
+    </ButtonWrapper>
+  );
 };
 
-Button.defaultProps = {};
 export default Button;

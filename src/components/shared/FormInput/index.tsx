@@ -25,6 +25,7 @@ const FormInput = ({
           valueId={valueId}
           value={value}
           onChange={onChange}
+          validateCheck={validateCheck}
         />
         {children}
       </InputWrapper>

@@ -8,25 +8,8 @@ interface ILoginType {
 }
 
 export const InputInnerWrapper = styled(Input)`
-  ${({ theme }: ILoginType) => css`
-    width: 100%;
-    padding: ${theme.input.padding};
-    padding-right: 50px !important;
-
-    &::placeholder {
-      color: ${theme.common.colors.gray2};
-    }
-
-    &:focus {
-      border: 2px solid ${theme.input.colors.borderActive};
-    }
-
-    &[type="number"]::-webkit-outer-spin-button,
-    &[type="number"]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  `}
+  width: 100%;
+  padding-right: 50px !important;
 `;
 
 export const InputWrapper = styled.div`

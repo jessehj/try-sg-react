@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  BtnStyle,
-  InputBtnWrapper,
-  InputStyle,
-  InputImgWrapper,
-} from "./style";
+import InputBtn from "./style";
 import Notice from "../Notice";
+import { IIdType } from "../../utils";
 
 interface IInputType {
   type: string;
-  valueId: string;
+  valueId: IIdType;
   placeholder: string;
   value?: string;
   onChange: (e: React.ChangeEvent<any>) => void;
@@ -18,7 +14,7 @@ interface IInputType {
   style?: any;
   btnValue: string;
   message?: string;
-  error?: boolean;
+  isError?: boolean;
   isDisabled?: boolean;
 }
 
@@ -32,33 +28,29 @@ const FormInputBtn = ({
   btnValue,
   message,
   onClick,
-  error,
+  isError,
   isDisabled,
   ...rest
 }: IInputType) => {
   return (
     <>
-      <InputBtnWrapper>
-        <InputImgWrapper {...rest} value={value}>
-          <InputStyle
-            error={error}
+      <InputBtn.Wrapper>
+        <InputBtn.InputContainer {...rest} value={value}>
+          <InputBtn.Input
+            isError={isError}
             type={type}
             placeholder={placeholder}
-            id={valueId}
+            valueId={valueId}
             value={value}
             onChange={onChange}
           />
           {children}
-        </InputImgWrapper>
-        <BtnStyle
-          type="button"
-          disabled={isDisabled}
-          onClick={() => onClick(value)}
-        >
+        </InputBtn.InputContainer>
+        <InputBtn.Btn disabled={isDisabled} onClick={() => onClick(value)}>
           {btnValue}
-        </BtnStyle>
-      </InputBtnWrapper>
-      {message && <Notice isError={error} message={message} />}
+        </InputBtn.Btn>
+      </InputBtn.Wrapper>
+      {message && <Notice isError={isError} message={message} />}
     </>
   );
 };

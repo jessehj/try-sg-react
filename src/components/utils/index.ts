@@ -19,7 +19,10 @@ export interface IValidateType {
 export const validation = ({ value, type, checkValue }: IValidateType) => {
   switch (type) {
     case "id":
-      if (/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6,}$/.test(value)) {
+      if (
+        /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6,}$/.test(value) &&
+        value !== ""
+      ) {
         return {
           error: false,
           notice: undefined,
@@ -44,7 +47,8 @@ export const validation = ({ value, type, checkValue }: IValidateType) => {
       if (
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/.test(
           value
-        )
+        ) &&
+        value !== ""
       ) {
         return {
           error: false,
@@ -57,6 +61,7 @@ export const validation = ({ value, type, checkValue }: IValidateType) => {
       };
     case "pwdReCheck":
       if (value === checkValue) {
+        // TODO: 이부분 밖에서 관리해야함
         if (!value) {
           return {
             error: false,
@@ -72,7 +77,8 @@ export const validation = ({ value, type, checkValue }: IValidateType) => {
       if (
         /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(
           value
-        )
+        ) &&
+        value !== ""
       ) {
         return {
           error: false,
@@ -84,7 +90,10 @@ export const validation = ({ value, type, checkValue }: IValidateType) => {
         notice: commonStrings.INPUT_EMAIL_VALIDATE_ERROR,
       };
     case "phone":
-      if (/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/.test(value)) {
+      if (
+        /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/.test(value) &&
+        value !== ""
+      ) {
         return {
           error: false,
           notice: undefined,

@@ -32,6 +32,7 @@ const commonStrings = new LocalizedStrings({
     INPUT_PHONE_VALIDATE_ERROR: "핸드폰 번호가 올바르지 않습니다.",
 
     INPUT_CERTIFICATION_NUMBER: "인증번호 입력",
+    INPUT_CERTIFICATION_TIME_ERROR: "인증번호 입력시간이 초과되었습니다.",
     INPUT_CERTIFICATION_NUMBER_ERROR: "인증번호가 올바르지 않습니다.",
     INPUT_CERTIFICATION_NUMBER_SUCCESS: "인증이 완료되었습니다.",
 

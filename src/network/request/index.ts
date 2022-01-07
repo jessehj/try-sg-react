@@ -3,20 +3,21 @@ import QueryString from "qs";
 import { RequestParams } from "../types";
 import { REQUEST_TIMEOUT_DEFAULT } from "../constants";
 
-export default async ({
+export const request = async <T>({
   method,
   url,
   queryParams,
   body,
   headers,
   isMultipart,
-}: RequestParams): Promise<AxiosResponse> => {
+}: RequestParams): Promise<AxiosResponse<T>> => {
   const config: AxiosRequestConfig = {
     url,
     method,
     params: queryParams,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     data: body,
-    baseURL: process.env.REACT_APP_ROOT_URL,
+    baseURL: process.env.REACT_APP_MOCK_URL,
     timeout: REQUEST_TIMEOUT_DEFAULT,
     paramsSerializer: (params) =>
       QueryString.stringify(params, { arrayFormat: "brackets" }),

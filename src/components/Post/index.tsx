@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { GRAY02, GRAY05, GRAY06 } from "../../styles/Variables";
-import Modal from "../Modal/Modal";
+import Index from "../Modal";
 
 const Post = function Post() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,7 +10,7 @@ const Post = function Post() {
   return (
     <Base>
       {isModalOpen && (
-        <Modal width="384px" height="196px" onClose={handleCloseModal} />
+        <Index width="384px" height="196px" onClose={handleCloseModal} />
       )}
       <ContentContainer>
         <Image src="images/post-image.svg" />

@@ -5,11 +5,11 @@ import { Provider } from "react-redux";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import store from "./redux/store/store";
+import index from "./redux/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={index}>
       <App />
     </Provider>
   </React.StrictMode>,

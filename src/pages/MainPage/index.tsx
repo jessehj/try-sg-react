@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Post from "../../components/Post/Post";
+import Post from "../../components/Post";
 import { GRAY05 } from "../../styles/Variables";
 import { mediaQueries, MOBILE } from "../../styles/MediaQuery";
 

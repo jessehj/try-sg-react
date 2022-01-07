@@ -1,6 +1,7 @@
 import { createReducer, ActionType, createAsyncAction } from "typesafe-actions";
 import { AxiosError } from "axios";
-import { LoginReqType, LoginState, UserType } from "../../@types/logintype";
+import { LoginReqType, UserType } from "../../pages/LoginPage/@types";
+import { LoginState } from "../@types";
 
 const prefix = "try-sg-react/login";
 export const PENDING = `${prefix}/PENDING` as const;

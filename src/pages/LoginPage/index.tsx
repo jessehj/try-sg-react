@@ -16,7 +16,7 @@ import { CustomInput } from "../../styles/CustomInput";
 import { CustomButton } from "../../styles/CustomButton";
 import { loginAsync } from "../../redux/modules/login";
 
-const LoginPage = function LoginPage() {
+const LoginPage = function () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

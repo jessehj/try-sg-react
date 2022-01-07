@@ -15,7 +15,7 @@ import {
 import { BLUE02, GRAY03, GRAY04 } from "../../styles/Variables";
 import { mediaQueries, MOBILE } from "../../styles/MediaQuery";
 
-const SignUpPage = function SignUpPage() {
+const SignupPage = function SignUpPage() {
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -126,7 +126,7 @@ const SignUpPage = function SignUpPage() {
     </Base>
   );
 };
-export default SignUpPage;
+export default SignupPage;
 
 const MobileImageWrapper = styled(ImageWrapper)`
   ${mediaQueries(MOBILE)} {

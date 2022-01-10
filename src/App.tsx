@@ -1,21 +1,25 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import theme from "./common/styles/theme";
-import LoginPage from "./pages/Login";
 import Header from "./components/shared/Header";
-import SignUp from "./pages/SignUp";
+import { ROUTES } from "./routes";
 
-const App: FC = () => (
-  <ThemeProvider theme={theme}>
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="signUp" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
-  </ThemeProvider>
-);
+const App: FC = () => {
+  const [isLogin] = useState<boolean>(false);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Header isLogin={isLogin} />
+        <Routes>
+          {ROUTES.map(({ path, component: Component }) => (
+            <Route key={path} path={path} element={<Component />} />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+};
 
 export default App;

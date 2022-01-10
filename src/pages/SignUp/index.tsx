@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { LoginWrapper } from "../style/style";
+import SignUpForm from "./style";
+import { IInitialValue } from "./type";
+import useTimer from "../../hooks/useTimer";
 import commonStrings from "../../constants/strings";
-import { SignUpForm, SignUpWrapper } from "./style";
 import FormInput from "../../components/shared/FormInput";
 import FormInputBtn from "../../components/shared/FormInputBtn";
 import { IValidateType, validation } from "../../components/utils";
-import { IInitialValue } from "./type";
 import LoginLogo from "../../components/shared/LoginLogo";
-import useTimer from "../../hooks/useTimer";
 
 const initialValues: IInitialValue = {
   id: "",
@@ -19,11 +21,11 @@ const initialValues: IInitialValue = {
   certificationCode: "",
 };
 
-const SignUpPage: React.FC = () => {
+const SignUpPage = () => {
+  const navigate = useNavigate();
   /**
    * State
    */
-
   const [notice, setNotice] = useState<{ [type: string]: string | undefined }>({
     id: undefined,
     pwd: undefined,
@@ -53,7 +55,8 @@ const SignUpPage: React.FC = () => {
   const onSubmit = async () => {
     console.log("error", error);
     // TODO: 여기서 에러 있을 때 회원가입 통과 막아야함
-    alert("회원가입 완료");
+    // eslint-disable-next-line react/destructuring-assignment
+    navigate("/welcome");
   };
 
   const handleValidate = ({ value, type }: IValidateType) => {
@@ -138,7 +141,7 @@ const SignUpPage: React.FC = () => {
    * Render Helpers
    */
   return (
-    <SignUpWrapper>
+    <LoginWrapper>
       <LoginLogo type="signUp" />
       <SignUpForm.Wrapper>
         <SignUpForm.Form onSubmit={formik.handleSubmit}>
@@ -239,7 +242,7 @@ const SignUpPage: React.FC = () => {
           </SignUpForm.BackToLoginLink>
         </SignUpForm.BackToLogin>
       </SignUpForm.Wrapper>
-    </SignUpWrapper>
+    </LoginWrapper>
   );
 };
 

@@ -1,21 +1,7 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SignUpWrapper = styled.main`
-  ${({ theme }) => css`
-    display: flex;
-
-    ${theme.device.tablet} {
-      display: block;
-      width: 100%;
-      height: 100vh;
-      background-color: ${theme.common.colors.background};
-      margin: auto;
-    }
-  `}
-`;
-
-export const SignUpForm = {
+const SignUpForm = {
   Wrapper: styled.div`
     ${({ theme }) => css`
       width: 50%;
@@ -105,3 +91,5 @@ export const SignUpForm = {
     `}
   `,
 };
+
+export default SignUpForm;

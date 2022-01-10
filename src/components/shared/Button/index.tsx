@@ -8,9 +8,11 @@ interface IBtnType {
   disabled?: boolean;
   style?: any;
   onClick?: () => void;
+  to?: string;
 }
 
 const Button = ({
+  to,
   type = "button",
   styleType,
   disabled = false,
@@ -31,10 +33,14 @@ const Button = ({
   /**
    * Render Helpers
    */
-  return (
-    <ButtonWrapper type={type} disabled={disabled} {...rest}>
+  return to ? (
+    <ButtonWrapper.Link to={to} type={type} {...rest}>
       {children}
-    </ButtonWrapper>
+    </ButtonWrapper.Link>
+  ) : (
+    <ButtonWrapper.Button type={type} disabled={disabled} {...rest}>
+      {children}
+    </ButtonWrapper.Button>
   );
 };
 

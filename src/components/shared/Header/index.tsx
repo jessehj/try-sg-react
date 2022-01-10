@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { HeaderList, HeaderLoginBtn } from "./style";
 import Logo from "../../../assets/svgs/logo.svg";
 import LogoInOn from "../../../assets/images/profile_large.png";
 import LogoInOff from "../../../assets/images/login_btn.png";
 import commonStrings from "../../../constants/strings";
 
-const Header: React.FC = () => {
+interface IHeaderProps {
+  isLogin: boolean;
+}
+
+const Header = ({ isLogin }: IHeaderProps) => {
   /**
    * State
    */
-  const [isLogin] = useState<boolean>(false);
 
   /**
    * Private Functions

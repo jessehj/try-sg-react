@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
+import { LoginWrapper } from "../style/style";
+import LoginForm from "./style";
 import LoginId from "../../assets/svgs/input_profile.svg";
 import LoginPwd from "../../assets/svgs/input_pwd.svg";
 import commonStrings from "../../constants/strings";
-import { LoginForm, LoginWrapper } from "./style";
 import FormInput from "../../components/shared/FormInput";
 import LoginLogo from "../../components/shared/LoginLogo";
 import { IValidateType, validation } from "../../components/utils";
@@ -25,7 +26,7 @@ const LoginPage: React.FC = () => {
    * Private Functions
    */
   const onSubmit = async () => {
-    alert("로그인");
+    alert("Login api 요청!");
   };
 
   const formik = useFormik({
@@ -90,7 +91,9 @@ const LoginPage: React.FC = () => {
           </FormInput>
           <LoginForm.LoginBtn
             type="submit"
-            disabled={!formik.values.id || !formik.values.pwd}
+            disabled={
+              !formik.values.id || !formik.values.pwd || error.id || error.pwd
+            }
           >
             로그인
           </LoginForm.LoginBtn>

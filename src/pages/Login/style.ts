@@ -1,5 +1,4 @@
 import styled, { css, DefaultTheme } from "styled-components";
-import { Link } from "react-router-dom";
 import Button from "../../components/shared/Button";
 
 interface IInputType {
@@ -8,21 +7,7 @@ interface IInputType {
   error?: boolean;
 }
 
-export const LoginWrapper = styled.main`
-  ${({ theme }) => css`
-    display: flex;
-
-    ${theme.device.tablet} {
-      width: 100%;
-      display: block;
-      background-color: ${theme.common.colors.background};
-      height: 100vh;
-      margin: auto;
-    }
-  `}
-`;
-
-export const LoginForm = {
+const LoginForm = {
   Wrapper: styled.div`
     ${({ theme }) => css`
       width: 50%;
@@ -54,8 +39,9 @@ export const LoginForm = {
       margin-bottom: 12px;
     `}
   `,
-  FindBtn: styled(Link)`
+  FindBtn: styled(Button)`
     ${({ theme }) => css`
+      display: inline;
       color: ${theme.common.colors.gray2};
       border: none;
       background-color: #fff;
@@ -96,3 +82,4 @@ export const LoginForm = {
     `}
   `,
 };
+export default LoginForm;

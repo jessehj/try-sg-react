@@ -7,6 +7,7 @@ import FormInputBtn from "../../components/shared/FormInputBtn";
 import { IValidateType, validation } from "../../components/utils";
 import { IInitialValue } from "./type";
 import LoginLogo from "../../components/shared/LoginLogo";
+import useTimer from "../../hooks/useTimer";
 
 const initialValues: IInitialValue = {
   id: "",
@@ -42,13 +43,10 @@ const SignUpPage: React.FC = () => {
     certificationCode: false,
   });
   const [isCertification, setIsCertification] = useState<boolean>(false);
-
-  let timer = 180;
-  let min = 0;
-  let sec = 0;
-  const [time, setTime] = useState<string>();
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-
+  const [timer, startTimer] = useTimer({
+    timer: 180,
+    intervalTime: 1000,
+  });
   /**
    * Private Functions
    */
@@ -80,8 +78,8 @@ const SignUpPage: React.FC = () => {
   // const handlePwdRecheck = ({ value }: { value: string }) => {
   //   /**
   //    * 문제점
-  //    * 1. password가 변경될 시 pwdReCheck에서도 에러값 변경
-  //    * 2. 빈 Password 값 일 때 PwdReCheck에서는 check할 필요없음
+  //    * 1. password 변경될 시 pwdReCheck 에서도 에러값 변경
+  //    * 2. 빈 Password 값 일 때 PwdReCheck 에서는 check 필요없음
   //    */
   //   if (formik.values.pwd) {
   //     // 이때만 validate 체크
@@ -96,36 +94,6 @@ const SignUpPage: React.FC = () => {
   /**
    * Event Actions
    */
-  let intervalTimer: NodeJS.Timer;
-  const handleStartTimer = () => {
-    intervalTimer = setInterval(() => {
-      timer -= 1;
-      min = parseInt(String(timer / 60), 10);
-      sec = parseInt(String(timer % 60), 10);
-
-      if (timer <= 0) {
-        clearInterval(intervalTimer);
-        setIsRunning(false);
-      }
-      const timeChange = () => {
-        const minute = min < 10 ? `0${min}` : min;
-        const second = sec < 10 ? `0${sec}` : sec;
-
-        return `${minute} : ${second}`;
-      };
-      setTime(timeChange());
-    }, 1000);
-  };
-
-  const handleTimer = () => {
-    if (isRunning) {
-      // TODO: error 이부분 수정 필요 clear interval이 작동하지 않음
-      clearInterval(intervalTimer);
-    } else {
-      handleStartTimer();
-    }
-    setIsRunning(true);
-  };
 
   const handleBtnError = (
     type: "id" | "phone",
@@ -138,7 +106,7 @@ const SignUpPage: React.FC = () => {
       if (type === "phone") {
         setIsCertification(true);
         // 통과시에 Timer 작동 핸들러
-        handleTimer();
+        startTimer();
       }
     } else {
       setError((current) => ({ ...current, [type]: error }));
@@ -248,7 +216,7 @@ const SignUpPage: React.FC = () => {
               isError={error?.certificationCode}
               validateCheck={handleValidate}
             >
-              <SignUpForm.Timer>{time}</SignUpForm.Timer>
+              <SignUpForm.Timer>{timer}</SignUpForm.Timer>
             </FormInput>
           )}
           <SignUpForm.LoginBtn

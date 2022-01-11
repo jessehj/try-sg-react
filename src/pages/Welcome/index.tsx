@@ -24,7 +24,7 @@ const Welcome: React.FC = () => {
     <LoginWrapper>
       <LoginLogo type="welcome" />
       <WelcomeForm.Wrapper>
-        <WelcomeForm.Form>
+        <WelcomeForm.InnerWrap>
           <WelcomeForm.TitleWrap>
             <WelcomeForm.Title>
               {commonStrings.TITLE_WELCOME_TITLE}
@@ -34,7 +34,7 @@ const Welcome: React.FC = () => {
             </WelcomeForm.SubTitle>
           </WelcomeForm.TitleWrap>
           <WelcomeForm.LoginBtn to="/login">로그인</WelcomeForm.LoginBtn>
-        </WelcomeForm.Form>
+        </WelcomeForm.InnerWrap>
       </WelcomeForm.Wrapper>
     </LoginWrapper>
   );

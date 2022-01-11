@@ -12,6 +12,7 @@ const ButtonWrapper = {
       color: ${theme.button.colors.textPrimary};
       background-color: ${theme.button.colors.bgPrimary};
       text-decoration: none;
+      cursor: pointer;
 
       ${theme.typo.body16B}
     `}
@@ -24,6 +25,7 @@ const ButtonWrapper = {
       background-color: ${disabled
         ? theme.button.colors.bgDisabled
         : theme.button.colors.bgPrimary};
+      cursor: pointer;
       ${theme.typo.body16B}
     `}
   `,

@@ -4,12 +4,14 @@ import styled, { css } from "styled-components";
 export const LoginWrapper = styled.main`
   ${({ theme }) => css`
     display: flex;
+    flex-grow: 1;
+    height: 100%;
+    margin: 0;
 
     ${theme.device.tablet} {
       width: 100%;
       display: block;
       background-color: ${theme.common.colors.background};
-      height: 100vh;
       margin: auto;
     }
   `}

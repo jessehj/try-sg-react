@@ -9,7 +9,11 @@ import FormInput from "../../components/shared/FormInput";
 import LoginLogo from "../../components/shared/LoginLogo";
 import { IValidateType, validation } from "../../components/utils";
 
-const LoginPage: React.FC = () => {
+interface ILoginProps {
+  setIsLogin: (b: boolean) => void;
+}
+
+const LoginPage = ({ setIsLogin }: ILoginProps) => {
   /**
    * State
    */
@@ -27,6 +31,7 @@ const LoginPage: React.FC = () => {
    */
   const onSubmit = async () => {
     alert("Login api 요청!");
+    setIsLogin(true);
   };
 
   const formik = useFormik({

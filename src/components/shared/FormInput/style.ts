@@ -29,8 +29,6 @@ export const InputWrapper = styled.div`
       right: 24px;
       top: 50%;
       transform: translateY(-50%);
-
-      //filter: invert(75%) sepia(82%) saturate(4967%) hue-rotate(323deg) brightness(103%) contrast(119%);
     }
 
     &:first-of-type {

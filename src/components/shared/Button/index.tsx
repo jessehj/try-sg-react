@@ -4,9 +4,9 @@ import ButtonWrapper from "./style";
 interface IBtnType {
   type?: "button" | "submit" | "reset" | undefined;
   styleType?: string;
-  children: any;
+  children: React.ReactNode;
+  style?: React.CSSProperties;
   disabled?: boolean;
-  style?: any;
   onClick?: () => void;
   to?: string;
 }

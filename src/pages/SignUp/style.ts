@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import Button from "../../components/shared/Button";
 
 const SignUpForm = {
   Wrapper: styled.div`
@@ -7,9 +8,7 @@ const SignUpForm = {
       width: 50%;
       height: calc(100vh - 80px);
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
 
       ${theme.device.tablet} {
         width: 100%;
@@ -19,6 +18,16 @@ const SignUpForm = {
   `,
   Form: styled.form`
     width: 316px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    &::before,
+    &::after {
+      content: "";
+      margin: auto;
+    }
   `,
   Title: styled.h2`
     ${({ theme }) => css`
@@ -26,52 +35,23 @@ const SignUpForm = {
       ${theme.typo.head24}
     `}
   `,
-  LoginBtn: styled.button`
-    ${({ theme, disabled }) => css`
-      width: 100%;
-      height: ${theme.button.heights.extraLarge};
-      border: none;
-      border-radius: 8px;
-      color: ${theme.button.colors.textPrimary};
-      background-color: ${disabled
-        ? theme.button.colors.bgDisabled
-        : theme.button.colors.bgPrimary};
-      margin-bottom: 12px;
-
-      ${theme.typo.body16B}
-    `}
-  `,
-  FindBtn: styled(Link)`
+  SignUpBtn: styled(Button)`
     ${({ theme }) => css`
-      color: ${theme.common.colors.gray2};
-      border: none;
-      background-color: #fff;
-      margin-left: 10px !important;
-
-      &:first-of-type,
-      &:nth-of-type(2) {
-        &::after {
-          content: "";
-          margin-left: 10px;
-          border: 1px solid;
-        }
-      }
-
-      &:hover {
-        color: ${theme.common.colors.primary};
-      }
-
-      ${theme.typo.body14B}
+      display: inline-block;
+      width: 100%;
+      min-height: ${theme.button.heights.extraLarge};
+      margin-bottom: 12px;
     `}
   `,
-  BackToLogin: styled.div`
+  ToLogin: styled.div`
     ${({ theme }) => css`
       margin-top: 24px;
       color: ${theme.common.colors.gray2};
+      text-align: center;
       ${theme.typo.body14B};
     `}
   `,
-  BackToLoginLink: styled(Link)`
+  ToLoginLink: styled(Link)`
     ${({ theme }) => css`
       margin-left: 5px;
       color: ${theme.common.colors.primary};

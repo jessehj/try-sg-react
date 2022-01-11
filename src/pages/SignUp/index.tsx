@@ -222,7 +222,7 @@ const SignUpPage = () => {
               <SignUpForm.Timer>{timer}</SignUpForm.Timer>
             </FormInput>
           )}
-          <SignUpForm.LoginBtn
+          <SignUpForm.SignUpBtn
             type="submit"
             disabled={
               !formik.values.id ||
@@ -233,14 +233,12 @@ const SignUpPage = () => {
             }
           >
             가입하기
-          </SignUpForm.LoginBtn>
+          </SignUpForm.SignUpBtn>
+          <SignUpForm.ToLogin>
+            이미 계정이 있으신가요?
+            <SignUpForm.ToLoginLink to="/login">Log In</SignUpForm.ToLoginLink>
+          </SignUpForm.ToLogin>
         </SignUpForm.Form>
-        <SignUpForm.BackToLogin>
-          이미 계정이 있으신가요?
-          <SignUpForm.BackToLoginLink to="/login">
-            Log In
-          </SignUpForm.BackToLoginLink>
-        </SignUpForm.BackToLogin>
       </SignUpForm.Wrapper>
     </LoginWrapper>
   );

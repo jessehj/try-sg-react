@@ -118,7 +118,7 @@ declare module "styled-components" {
       head32: string;
       head24: string;
       head22: string;
-      head20: string;
+      head18: string;
       head14: string;
       body16B: string;
       body16M: string;

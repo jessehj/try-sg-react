@@ -6,16 +6,17 @@ import { IIdType } from "../../utils";
 interface IInputType {
   type: string;
   valueId: IIdType;
-  placeholder: string;
+  placeholder?: string;
   value?: string;
-  onChange: (e: React.ChangeEvent<any>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick: (value?: string) => void;
-  children?: any;
-  style?: any;
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
   btnValue: string;
   message?: string;
   isError?: boolean;
   isDisabled?: boolean;
+  disabled?: boolean;
 }
 
 const FormInputBtn = ({
@@ -30,20 +31,23 @@ const FormInputBtn = ({
   onClick,
   isError,
   isDisabled,
+  disabled,
   ...rest
 }: IInputType) => {
+  const testprops = {
+    isError,
+    type,
+    placeholder,
+    valueId,
+    value,
+    onChange,
+    disabled,
+  };
   return (
     <>
       <InputBtn.Wrapper>
         <InputBtn.InputContainer {...rest} value={value}>
-          <InputBtn.Input
-            isError={isError}
-            type={type}
-            placeholder={placeholder}
-            valueId={valueId}
-            value={value}
-            onChange={onChange}
-          />
+          <InputBtn.Input {...testprops} />
           {children}
         </InputBtn.InputContainer>
         <InputBtn.Btn disabled={isDisabled} onClick={() => onClick(value)}>

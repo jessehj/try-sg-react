@@ -130,7 +130,7 @@ const theme = {
     head32: getTypo("bold", 32),
     head24: getTypo("bold", 24),
     head22: getTypo("bold", 22),
-    head20: getTypo("bold", 18),
+    head18: getTypo("bold", 18),
     head14: getTypo("bold", 14, "20px"),
     body16B: getTypo("bold", 16),
     body16M: getTypo("medium", 16),

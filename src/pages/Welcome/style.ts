@@ -1,15 +1,14 @@
 import styled, { css } from "styled-components";
 import Button from "../../components/shared/Button";
+import { flexCenterCss } from "../../common/styles/commonStyle";
 
 const WelcomeForm = {
   Wrapper: styled.div`
     ${({ theme }) => css`
+      ${flexCenterCss};
       width: 50%;
       height: calc(100vh - 80px);
-      display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
 
       ${theme.device.tablet} {
         width: 100%;
@@ -17,7 +16,7 @@ const WelcomeForm = {
       }
     `}
   `,
-  Form: styled.form`
+  InnerWrap: styled.form`
     ${({ theme }) => css`
       width: 355px;
 

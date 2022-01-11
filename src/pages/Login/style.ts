@@ -1,5 +1,6 @@
 import styled, { css, DefaultTheme } from "styled-components";
 import Button from "../../components/shared/Button";
+import { flexCenterCss } from "../../common/styles/commonStyle";
 
 interface IInputType {
   theme: DefaultTheme;
@@ -10,12 +11,10 @@ interface IInputType {
 const LoginForm = {
   Wrapper: styled.div`
     ${({ theme }) => css`
+      ${flexCenterCss};
       width: 50%;
       height: calc(100vh - 80px);
-      display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
 
       ${theme.device.tablet} {
         width: 100%;

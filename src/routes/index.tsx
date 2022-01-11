@@ -1,8 +1,9 @@
 import React, { FC } from "react";
-import { LOGIN, SIGNUP, WELCOME } from "./url";
+import { LOGIN, MYPAGE, SIGNUP, WELCOME } from "./url";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Welcome from "../pages/Welcome";
+import MyPage from "../pages/MyPage";
 
 export type RouteInfo = {
   path: string;
@@ -18,9 +19,12 @@ export const ROUTES: Array<RouteInfo> = [
     path: SIGNUP,
     component: SignUp,
   },
-
   {
     path: WELCOME,
     component: Welcome,
+  },
+  {
+    path: MYPAGE,
+    component: MyPage,
   },
 ];

@@ -6,7 +6,7 @@ import Header from "./components/shared/Header";
 import { ROUTES } from "./routes";
 
 const App: FC = () => {
-  const [isLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -14,7 +14,11 @@ const App: FC = () => {
         <Header isLogin={isLogin} />
         <Routes>
           {ROUTES.map(({ path, component: Component }) => (
-            <Route key={path} path={path} element={<Component />} />
+            <Route
+              key={path}
+              path={path}
+              element={<Component isLogin={isLogin} setIsLogin={setIsLogin} />}
+            />
           ))}
         </Routes>
       </BrowserRouter>

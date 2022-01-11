@@ -47,6 +47,8 @@ const commonStrings = new LocalizedStrings({
     NOTICE_DELETE_NOTICE_MAIN: "삭제된 글은 복구가 불가능합니다.",
     NOTICE_DELETE_NOTICE_SUB: "글을 삭제하시겠습니까?",
 
+    BUTTON_PASSWORD: "비밀번호 변경",
+
     MENUS_HOME: "홈피드",
     MENUS_CATEGORY: "카테고리",
     MENUS_DERECTORY: "디렉토리",
